@@ -13,7 +13,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ project.project_name }}</h5>
             <p class="card-text">Created by: {{ project.user.username }}</p>
-            <a href="{% url 'project_detail' pk=project.pk %}" class="btn btn-primary">View Details</a>
+            <a href="{% url 'project_detail' pk=project.id %}" class="btn btn-primary">View Details</a>
           </div>
         </div>
       {% endfor %}

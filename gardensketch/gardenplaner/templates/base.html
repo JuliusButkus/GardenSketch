@@ -25,7 +25,6 @@
                         <a class="dropdown-item" href="#">Galary</a>
                     </div>
                 </div>
-                {% comment %} <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a> {% endcomment %}
                 <li class="spacer center"></li>
                 <li><a href="{% url 'my_projects'%}">{% trans "my projects"|title %}</a></li>
                 {% if user.is_authenticated %}
@@ -39,7 +38,7 @@
                     {% if user.is_superuser or user.is_staff %}
                     <li><a href="{% url "admin:index" %}">{% trans "admin"|title %}</a></li>
                     {% endif %}
-                    <li><a href="{% url "logout" %}">{% trans "logout"|title %}&#127866;</a></li>
+                    <li><a href="{% url "logout" %}">{% trans "logout"|title %}</a></li>
                 {% else %}
                     <li>{% trans "Welcome" %}</li>
                     <li><a href="{% url "login" %}">{% trans "Login"|title %}</a></li>

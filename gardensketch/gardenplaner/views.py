@@ -72,3 +72,31 @@ class MyProjectsView(generic.ListView):
     template_name = "gardenplaner/my_projects.html"
     # context_object_name = "gardenproject_list"
     paginate_by = 10
+
+
+class CreateProjectView(generic.View):
+    template_name = 'gardenplaner/create_project.html'
+
+    def get(self, request, *args, **kwargs):
+        form = forms.ProjectForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = forms.ProjectForm(request.POST)
+        if form.is_valid():
+            garden_project = form.save(commit=False)
+            garden_project.user = request.user  
+            garden_project.save()
+            return redirect('project_detail', pk=garden_project.pk)
+        return render(request, self.template_name, {'form': form})
+    
+
+class ProjectDetailView(generic.DetailView):
+    model = models.Project
+    template_name = "gardenplaner/project_detail.html"
+    # context_object_name = "garden_project"  naudota anksciau sename projekte
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['zones'] = models.Zone.objects.filter(garden_project=self.object)
+    #     return context
