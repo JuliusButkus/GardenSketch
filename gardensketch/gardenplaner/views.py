@@ -156,7 +156,7 @@ class AddPlantView(generic.CreateView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['zone'] = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
-        context['plant'] = get_object_or_404(models.Plant, pk=self.request.GET.get('plant'))
+        # context['plant'] = get_object_or_404(models.Plant, pk=self.request.GET.get('plant'))
         return context
 
     def get_initial(self) -> dict[str, Any]:
@@ -167,8 +167,9 @@ class AddPlantView(generic.CreateView):
     
     def get_form(self, form_class: type[BaseModelForm] | None = ...) -> BaseModelForm:
         form = forms.ZonePlantForm(initial=self.get_initial())
-        form.fields['color'].queryset = models.Color.objects.filter(plant=self.request.GET.get('plant'))
+        # form.fields['color'].queryset = models.Color.objects.filter(plant=self.request.GET.get('plant'))
         return form
+
 
 class AddPhotoView(generic.View):  
     template_name = "gardenplaner/add_photo.html" 

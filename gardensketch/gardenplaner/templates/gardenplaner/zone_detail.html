@@ -17,9 +17,9 @@
   </form>
 
   <h3>Selected Plants</h3>
-  {{ zone.selected_plants.all }}
-  {% for selected_plant in zone.selected_plants.all %}
-    <p>Plant: {{ selected_plant.plant.name_en }} - Color: {{ plant.color.name_en }} - Blooming Period: {{ plant.blooming_period }} - Quantity: {{ plant.qty }} - Price: {{ plant.price }}</p>
+  {{ zone.zone_plants.all }}
+  {% for zone_plant in zone.zone_plants.all %}
+    <p>Plant: {{ zone_plant.plant.name_en }} - Color: {{ zone_plant.color.name_en }} - Blooming Period: {{ zone_plant.blooming_period }} - Quantity: {{ zone.zone_plant.qty }} - Price: {{ zone_plant.price }}</p>
   {% endfor %}
 
   <h3>Photos</h3>
