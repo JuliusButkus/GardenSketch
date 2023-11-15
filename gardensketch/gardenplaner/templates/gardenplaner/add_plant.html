@@ -10,18 +10,5 @@
     <button type="submit" class="btn btn-primary">Add Plant</button>
   </form>
 
-  <h3>Selected Plants</h3>
-  <ul>
-    {% for plant in object_list %}
-      <li>
-        <p>Plant: {{ selected_plant.plant.name_en }}</p>
-        <p class="card-text">Color: {{ selected_plant.color.name_en }}</p>
-        <p class="card-text">Blooming Period: {{ selected_plant.blooming_period }}</p>
-        <p class="card-text">Quantity: {{ selected_plant.qty }}</p>
-        <p class="card-text">Price: {{ selected_plant.price }}</p>
-      </li>
-    {% endfor %}
-  </ul>
-
   <a href="{% url 'zone_detail' pk=zone.id %}" class="btn btn-primary">Back to Zone</a>
 {% endblock %}
