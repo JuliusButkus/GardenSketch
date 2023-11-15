@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}{% trans "plants list" %}{{ block.super }}{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="background center">
+        <div class="content center">
+            <div class="main-content">
+                <div class="pager">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">{% trans "First" %}</a>
+                        {% if page_obj.previous_page_number != 1 %}
+                            <a href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
+                        {% endif %}
+                    {% endif %}
+                    <span class="current">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }} </span>
+                    {% if page_obj.has_next %}
+                        {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
+                            <a href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
+                        {% endif %}
+                        <a href="?page={{ page_obj.paginator.num_pages }}">{% trans "Last" %}</a>
+                    {% endif %}
+                    {% if search %}
+                        <form class="beer-search" method="GET" action="{{ request.path }}">
+                            <input type="text" name="query" value="{{ request.GET.query }}" placeholder="{% trans "search beer" %}...">
+                            <button type="submit">&#128269;</button>
+                            <a href="{{ request.path }}">{% trans "reset" %}</a>
+                        </form>
+                    {% endif %}
+                </div>
+                {% if object_list %}
+                    <div class="plant-list center">
+                        <ul>
+                        {% for plant in object_list %}
+                            <li class="data-menu center">
+                                {% comment %} <h3><a href="{% url 'beer_detail' beer.name %}">{{ beer.name }}</a></h3> {% endcomment %}
+                                <p><strong>{% trans "Price"|capfirst %}:</strong> {{ beer.price }}$
+                                <strong>{% trans "Available Liters"|capfirst %}:</strong> {{ beer.qty }}
+                                <strong>{% trans "Beer Type"|capfirst %}:</strong> {{ beer.beer_type.name }}</p>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <p>{% trans "No plant available" %}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>    
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %} {{ block.super }}{% endblock title %}
+{% block content %}
+  <h2>My Projects</h2>
+  <div class="mb-3">
+    <a href="{% url 'create_project' %}" class="btn btn-success">Create New Project</a>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      {% for project in project_list %}
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ project.project_name }}</h5>
+            <p class="card-text">Created by: {{ project.user.username }}</p>
+            <a href="{% url 'project_detail' pk=project.pk %}" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="col-md-4">
+      <!-- You can include additional content or widgets here -->
+    </div>
+  </div>
+{% endblock %}
+
+
+
+
+
+
