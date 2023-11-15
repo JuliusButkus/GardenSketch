@@ -139,17 +139,36 @@ class CreateZoneView(generic.View):
 class ZoneDetailView(generic.DetailView):
     model = models.Zone
     template_name = 'gardenplaner/zone_detail.html'
-    # context_object_name = 'zone'   #naudota sename projekte
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['photos'] = models.Photo.objects.filter(zone=self.object)
         context['plants_dropdown_form'] = forms.PlantDropdownForm
         # context['selected_plants'] = models.ZonePlant.objects.filter(zone=self.object)
         # turetu teori6kai buti nereikalingi
         return context
     
 
+class AddPlantView(generic.CreateView):
+    model = models.ZonePlant
+    form_class = forms.ZonePlantForm
+    template_name = 'gardenplaner/add_plant.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['zone'] = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
+        context['plant'] = get_object_or_404(models.Plant, pk=self.request.GET.get('plant'))
+        return context
+
+    def get_initial(self) -> dict[str, Any]:
+        initial = super().get_initial()
+        initial['zone'] = self.kwargs['zone_id']
+        initial['plant'] = self.request.GET.get('plant')
+        return initial
+    
+    def get_form(self, form_class: type[BaseModelForm] | None = ...) -> BaseModelForm:
+        form = forms.ZonePlantForm(initial=self.get_initial())
+        form.fields['color'].queryset = models.Color.objects.filter(plant=self.request.GET.get('plant'))
+        return form
 
 class AddPhotoView(generic.View):  
     template_name = "gardenplaner/add_photo.html" 

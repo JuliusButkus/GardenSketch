@@ -11,10 +11,10 @@
       <p class="card-text">Garden Project: {{ zone.project.project_name }}</p>
     </div>
   </div>
-  {% comment %} <form method="GET" action="{% url 'add_plant' zone_id=zone.pk %}">
+  <form method="GET" action="{% url 'add_plant' zone_id=zone.pk %}">
     {{ plants_dropdown_form.as_p }}
     <button type="submit" class="btn btn-primary">Add Plant</button>
-  </form> {% endcomment %}
+  </form>
 
   <h3>Selected Plants</h3>
   {{ zone.selected_plants.all }}
