@@ -14,6 +14,13 @@ from . import models, forms
 from django.views.decorators.csrf import csrf_protect
 
 
+def delete_project_view(request, pk):
+    project = get_object_or_404(models.Project, pk=pk)
+    if request.method == 'POST':
+        project.delete()
+        return redirect('my_projects')
+    return render(request, 'gardenplaner/delete_project.html', {'project': project})
+
 def index(request: HttpRequest):
     num_visits = request.session.get('num_visits', 1)
     request.session['num_visits'] = num_visits + 1
@@ -84,29 +91,22 @@ class CreateProjectView(generic.View):
     def post(self, request, *args, **kwargs):
         form = forms.ProjectForm(request.POST)
         if form.is_valid():
-            garden_project = form.save(commit=False)
-            garden_project.user = request.user  
-            garden_project.save()
-            return redirect('project_detail', pk=garden_project.pk)
+            project = form.save(commit=False)
+            project.user = request.user  
+            project.save()
+            return redirect('project_detail', pk=project.pk)
         return render(request, self.template_name, {'form': form})
     
 
 class ProjectDetailView(generic.DetailView):
     model = models.Project
     template_name = "gardenplaner/project_detail.html"
-    # context_object_name = "garden_project"  naudota anksciau sename projekte
+    context_object_name = "project" #naudota anksciau sename projekte
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['zones'] = models.Zone.objects.filter(garden_project=self.object)
-    #     return context
-
-def delete_project_view(request, pk):
-    project = get_object_or_404(models.Project, pk=pk)
-    if request.method == 'POST':
-        project.delete()
-        return redirect('my_projects')
-    return render(request, 'gardenplaner/delete_project.html', {'project': project})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['zones'] = models.Zone.objects.filter(project=self.object)
+        return context
 
 
 class CreateZoneView(generic.View):
@@ -128,9 +128,23 @@ class CreateZoneView(generic.View):
             zone = zone_form.save(commit=False)
             zone.project = project
             zone.save()
-            return redirect('zone_detail',  pk=zone.id)
+            return redirect('zone_detail',  pk=project.id)
 
         return render(request, self.template_name, {
             'zone_form': zone_form,
             'project': project
         })
+    
+
+class ZoneDetailView(generic.DetailView):
+    model = models.Zone
+    template_name = 'gardenplaner/zone_detail.html'
+    # context_object_name = 'zone'   #naudota sename projekte
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['photos'] = models.Photo.objects.filter(zone=self.object)
+        context['plants_dropdown_form'] = forms.PlantDropdownForm
+        # context['selected_plants'] = models.ZonePlant.objects.filter(zone=self.object)
+        # turetu teori6kai buti nereikalingi
+        return context

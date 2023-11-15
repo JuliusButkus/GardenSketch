@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %} {{ block.super }}{% endblock title %}
+{% block content %}
+  <h2>Zone Details</h2>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Name : {{ zone.name }}</h5>
+      <p class="card-text">Length: {{ zone.lenght }}</p>
+      <p class="card-text">Width: {{ zone.width }}</p>
+      <p class="card-text">Garden Project: {{ zone.project.project_name }}</p>
+    </div>
+  </div>
+  {% comment %} <form method="GET" action="{% url 'add_plant' zone_id=zone.pk %}">
+    {{ plants_dropdown_form.as_p }}
+    <button type="submit" class="btn btn-primary">Add Plant</button>
+  </form> {% endcomment %}
+
+  <h3>Selected Plants</h3>
+  {{ zone.selected_plants.all }}
+  {% for selected_plant in zone.selected_plants.all %}
+    <p>Plant: {{ selected_plant.plant.name_en }} - Color: {{ plant.color.name_en }} - Blooming Period: {{ plant.blooming_period }} - Quantity: {{ plant.qty }} - Price: {{ plant.price }}</p>
+  {% endfor %}
+
+  <h3>Photos</h3>
+  {% comment %} <button><a href="{% url 'add_photo' zone_id=zone.pk %}">ADD Photo</a></button> {% endcomment %}
+  {% for photo in photos %}
+    <div>
+        {% if photo.image %}
+            <img src="{{ photo.image.url }}" alt="Photo">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+        <p>season: {{ photo.season }}</p>
+    </div>
+{% endfor %}
+
+  <a href="{% url 'project_detail' pk=zone.project.id %}" class="btn btn-primary">Back to Garden Project</a>
+{% endblock %}
