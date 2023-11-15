@@ -27,12 +27,12 @@ class PlantAdmin(admin.ModelAdmin):
     def display_colors(self, obj):
         return ', '.join([color.name_en for color in obj.colors.all()])
 
-# class SelectedPlantAdmin(admin.ModelAdmin):
-#     form = forms.ZonePlantForm
+class SelectedPlantAdmin(admin.ModelAdmin):
+    form = forms.ZonePlantForm
 
 
 
-# admin.site.register(models.ZonePlant, SelectedPlantAdmin)
+admin.site.register(models.ZonePlant, SelectedPlantAdmin)
 admin.site.register(models.Type, TypeAdmin)
 admin.site.register(models.Color, ColorAdmin)
 admin.site.register(models.PlantTime, PlantTimeAdmin)
