@@ -23,8 +23,9 @@
   {% endfor %}
 
   <h3>Photos</h3>
-  {% comment %} <button><a href="{% url 'add_photo' zone_id=zone.pk %}">ADD Photo</a></button> {% endcomment %}
-  {% for photo in photos %}
+  <button><a href="{% url 'add_photo' zone_id=zone.pk %}">ADD Photo</a></button>
+  {% comment %} {{ zone.photos.all}} {% endcomment %}
+  {% for photo in zone.photos.all %}
     <div>
         {% if photo.image %}
             <img src="{{ photo.image.url }}" alt="Photo">

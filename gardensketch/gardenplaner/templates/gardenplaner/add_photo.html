@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %} {{ block.super }}{% endblock title %}
+{% block content %}
+  <h2>Create Zone for {{ garden_project.project_name }}</h2>
+
+  <form method="post" action="{% url 'add_photo' zone_id=zone.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ photo_form.as_p }}
+    <button type="submit" class="btn btn-primary">Add Photo</button>
+</form>
+  <a href="{% url 'zone_detail' pk=zone.id %}" class="btn btn-primary">Back to Zone</a>
+
+{% endblock %}

@@ -14,6 +14,6 @@ urlpatterns = [
 
     path('zone/<int:pk>/', views.ZoneDetailView.as_view(), name='zone_detail'),
     # path('zone/<int:zone_id>/plant/add/', views.AddPlantView.as_view(), name='add_plant'),
-    # path('add_photo/<int:zone_id>/', views.AddPhotoView.as_view(), name='add_photo'),
+    path('add_photo/<int:zone_id>/', views.AddPhotoView.as_view(), name='add_photo'),
     
 ]

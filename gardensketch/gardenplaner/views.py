@@ -148,3 +148,36 @@ class ZoneDetailView(generic.DetailView):
         # context['selected_plants'] = models.ZonePlant.objects.filter(zone=self.object)
         # turetu teori6kai buti nereikalingi
         return context
+    
+
+
+class AddPhotoView(generic.View):  
+    template_name = "gardenplaner/add_photo.html" 
+
+    def get(self, request, zone_id):
+        zone = get_object_or_404(models.Zone, pk=zone_id)
+        photos = models.Photo.objects.filter(zone=zone).all()
+        photo_form = forms.PhotoForm()  # Use the correct form from your forms module
+        context = {
+            'zone': zone,
+            'photos': photos,
+            'photo_form': photo_form,
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, zone_id):
+        zone = get_object_or_404(models.Zone, pk=zone_id)
+        photo_form = forms.PhotoForm(request.POST, request.FILES)  
+        if photo_form.is_valid():
+            photo = photo_form.save(commit=False)
+            photo.zone = zone
+            photo.save()
+            return redirect('add_photo', zone_id=zone_id)
+        else:
+            photos = models.Photo.objects.filter(zone=zone).all()
+            context = {
+                'zone': zone,
+                'photos': photos,
+                'photo_form': photo_form,
+            }
+            return render(request, self.template_name, context)
