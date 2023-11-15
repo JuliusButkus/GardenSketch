@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{%load static i18n%}
+{% block title %}{% trans "Update Your Profile at" %} {{ block.super }}{% endblock title %}
+{% block content %}
+<div class="form-container">
+    <div class="form-background">
+        <div class="form-content">
+            <h1>{% trans "update your profile"|title %}</h1>
+            <form method="post" action="{{ request.path }}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <p><button type="submit">{% trans "save changes" %}</button></p>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
