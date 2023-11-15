@@ -100,3 +100,37 @@ class ProjectDetailView(generic.DetailView):
     #     context = super().get_context_data(**kwargs)
     #     context['zones'] = models.Zone.objects.filter(garden_project=self.object)
     #     return context
+
+def delete_project_view(request, pk):
+    project = get_object_or_404(models.Project, pk=pk)
+    if request.method == 'POST':
+        project.delete()
+        return redirect('my_projects')
+    return render(request, 'gardenplaner/delete_project.html', {'project': project})
+
+
+class CreateZoneView(generic.View):
+    template_name = 'gardenplaner/create_zone.html'
+
+    def get(self, request, project_id):
+        project = get_object_or_404(models.Project, pk=project_id)
+        zone_form = forms.ZoneForm()
+        return render(request, self.template_name, {
+            'zone_form': zone_form,
+            'project': project
+        })
+
+    def post(self, request, project_id):
+        project = get_object_or_404(models.Project, pk=project_id)
+        zone_form = forms.ZoneForm(request.POST)
+
+        if zone_form.is_valid():
+            zone = zone_form.save(commit=False)
+            zone.project = project
+            zone.save()
+            return redirect('zone_detail',  pk=zone.id)
+
+        return render(request, self.template_name, {
+            'zone_form': zone_form,
+            'project': project
+        })

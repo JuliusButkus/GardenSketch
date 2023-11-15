@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %} {{ block.super }}{% endblock title %}
+{% block content %}
+  <h2>Create Zone for {{ project.project_name }}</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ zone_form.as_p }}
+    <button type="submit" class="btn btn-primary">Create Zone</button>
+  </form>
+
+  <a href="{% url 'project_detail' pk=project.id %}" class="btn btn-secondary">Cancel</a>
+  
+{% endblock %}
