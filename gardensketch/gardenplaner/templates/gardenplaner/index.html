@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %} Welcome to {{ block.super }}{% endblock title %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="main-content">
+                <center><h1>{% trans "Bringing Your Garden Dreams to Life!" %}</h1></center>
+                <p class="title"><img class="title center" src="{% static '/img/titulinis.jpg' %}"></p>
+                <p>Transforming your outdoor space into a captivating garden
+                    retreat has never been easier. GardenSketch Pro is your premier tool
+                    for turning your garden dreams into reality.
+                    Whether you're an experienced gardener or just beginning
+                    your gardening journey, our cutting-edge platform is designed
+                    to simplify the process of planning and designing your dream garden.</p>
+                <p><h3>With GardenSketch Pro, you can:</h3></p>
+                <p> Visualize your garden layout with precision and creativity.
+                    Explore a vast selection of outdoor plants, trees, and shrubs.
+                    Receive personalized recommendations tailored to your location and climate.
+                    Create planting schedules and set handy reminders for essential tasks.
+                    Collaborate with friends, family, or fellow garden enthusiasts to refine your garden designs.
+
+
+                    Discover the power of GardenSketch Pro and unlock your garden's full potential.
+                    It's time to embark on a gardening adventure that will leave your outdoor space
+                    flourishing and beautiful. Let's begin your journey today!</p>
+                <ul>
+                </ul>
+            </div>
+        </div>   
+    </div>
+</body>
+{% endblock content %}

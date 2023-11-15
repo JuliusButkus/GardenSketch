@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static i18n%}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GardenSketchPro</title>
+    <link rel="stylesheet" href="{% static 'css/base_style.css' %}">
+    <style></style>
+</head>
+<body>
+    <header>
+        <ul class="navigation">
+            <ul class="nav">
+                <li class="logo"><a href="{% url "index" %}"><img class="logo" src="{% static '/img/logo2.png' %}" alt="GardenSketchPro Logo"></a></li>
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="{% static '/img/bars-solid.svg' %}" alt="Bars Icon" style="width: 24px; height: 24px; color: #22511f;">
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="dropdown-item" href="{% url 'plant_types'%}">plant types</a>
+                        <a class="dropdown-item" href="{% url 'plant_list' %}">plants</a>
+                        <a class="dropdown-item" href="#">Galary</a>
+                    </div>
+                </div>
+                {% comment %} <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a> {% endcomment %}
+                <li class="spacer center"></li>
+                <li><a href="{% url 'my_projects'%}">{% trans "my projects"|title %}</a></li>
+                {% if user.is_authenticated %}
+                    <li>
+                        {% if user.profile.photo %}
+                            <a href="{% url "profile" %}"><img class="nav-profile-photo" src="{{ user.profile.photo.url }}" alt="User Profile Picture"></a>
+                        {% else %}
+                            <a href="{% url "profile" %}">{{ user.username }}</a>
+                        {% endif %}
+                    </li>
+                    {% if user.is_superuser or user.is_staff %}
+                    <li><a href="{% url "admin:index" %}">{% trans "admin"|title %}</a></li>
+                    {% endif %}
+                    <li><a href="{% url "logout" %}">{% trans "logout"|title %}&#127866;</a></li>
+                {% else %}
+                    <li>{% trans "Welcome" %}</li>
+                    <li><a href="{% url "login" %}">{% trans "Login"|title %}</a></li>
+                    <li><a href="{% url "signup" %}">{% trans "Sign Up"|title %}</a></li>
+                {% endif %}
+                <li>
+                    <form class="inline-form" action="{% url "set_language" %}" method="POST">
+                        {% csrf_token %}
+                        <select name="language" onchange="this.form.submit();">
+                            {% for language in LANGUAGES %}
+                                <option value="{{ language.0 }}"
+                                {% if language.0 == LANGUAGE_CODE %} selected {% endif %}
+                                >{{ language.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </li>  
+            </ul>
+        </ul>
+    </header>
+    <main>
+        {% if messages%}
+            {% for message in messages %}
+            <div class="box box-{{ message.tags }}">
+                {{ message }}  
+            </div>
+            {% endfor %}
+        {% endif %}  
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p class="copyright center">&copy; 2023. All rights reserved by GardenSketchPro.</p>
+    </footer>
