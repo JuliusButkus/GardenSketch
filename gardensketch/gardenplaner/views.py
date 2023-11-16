@@ -1,5 +1,4 @@
 from typing import Any
-from datetime import date, timedelta
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator
@@ -72,15 +71,20 @@ class PlantListView(generic.ListView):
             )
         return queryset   
 
-# projekt views below
+# project views below
 
-class MyProjectsView(generic.ListView):
+class MyProjectsView(LoginRequiredMixin, generic.ListView):
     model = models.Project
     template_name = "gardenplaner/my_projects.html"
     paginate_by = 10
 
+    def get_queryset(self) -> QuerySet[Any]:
+        queryset = super().get_queryset()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
 
-class CreateProjectView(generic.View):
+
+class CreateProjectView(LoginRequiredMixin, generic.View):
     template_name = 'gardenplaner/create_project.html'
 
     def get(self, request, *args, **kwargs):
@@ -96,8 +100,9 @@ class CreateProjectView(generic.View):
             return redirect('project_detail', pk=project.pk)
         return render(request, self.template_name, {'form': form})
     
+    
 
-class ProjectDetailView(generic.DetailView):
+class ProjectDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
     model = models.Project
     template_name = "gardenplaner/project_detail.html"
     context_object_name = "project" #naudota anksciau sename projekte
@@ -106,9 +111,19 @@ class ProjectDetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['zones'] = models.Zone.objects.filter(project=self.object)
         return context
+    
+    def get_initial(self)->dict[str, Any]:
+        initial = super().get_initial()
+        initial['user'] = self.request.user
+        return initial
+       
+    
+    def test_func(self) -> bool | None:
+        self.object = self.get_object()
+        return self.request.user == self.object.user
 
 
-class CreateZoneView(generic.View):
+class CreateZoneView(LoginRequiredMixin, generic.View):
     template_name = 'gardenplaner/create_zone.html'
 
     def get(self, request, project_id):
@@ -135,7 +150,7 @@ class CreateZoneView(generic.View):
         })
     
 
-class ZoneDetailView(generic.DetailView):
+class ZoneDetailView(LoginRequiredMixin, generic.DetailView):
     model = models.Zone
     template_name = 'gardenplaner/zone_detail.html'
 
@@ -145,9 +160,9 @@ class ZoneDetailView(generic.DetailView):
         # context['selected_plants'] = models.ZonePlant.objects.filter(zone=self.object)
         # turetu teori6kai buti nereikalingi
         return context
-    
 
-class AddZonePlantView(generic.View):
+
+class AddZonePlantView(LoginRequiredMixin, generic.View):
     template_name = 'gardenplaner/add_plant.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -181,11 +196,7 @@ class AddZonePlantView(generic.View):
             return render(request, self.template_name, context)
     
     
-
-    
-
-
-class AddPhotoView(generic.View):  
+class AddPhotoView(LoginRequiredMixin, generic.View):  
     template_name = "gardenplaner/add_photo.html" 
 
     def get(self, request, zone_id):
@@ -216,34 +227,3 @@ class AddPhotoView(generic.View):
             }
             return render(request, self.template_name, context)
         
-
-
-# class AddZonePlantView(generic.CreateView):
-#     model = models.ZonePlant
-#     form_class = forms.ZonePlantForm
-#     template_name = 'gardenplaner/add_plant.html'
-
-#     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-#         context = super().get_context_data(**kwargs)
-#         context['zone'] = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
-#         context['plant'] = get_object_or_404(models.Plant, pk=self.request.GET.get('plant'))
-#         return context
-
-#     def get_initial(self) -> dict[str, Any]:
-#         initial = super().get_initial()
-#         initial['zone'] = self.kwargs['zone_id']
-#         initial['plant'] = self.request.GET.get('plant')
-#         return initial
-    
-#     def get_form(self, form_class: type[BaseModelForm] | None = ...) -> BaseModelForm:
-#         form = forms.ZonePlantForm(initial=self.get_initial())
-#         form.fields['color'].queryset = models.Color.objects.filter(plants=self.request.GET.get('plant'))
-#         return form
-    
-#     def get_success_url(self) -> str:
-#         return reverse_lazy('zone_detail', kwargs={'pk': self.kwargs['zone_id']})
-    
-#     def form_valid(self, form):
-#         form.instance.zone = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
-#         form.instance.plant = get_object_or_404(models.Plant, pk=self.request.GET.get('plant'))
-#         return super().form_valid(form)

@@ -9,6 +9,11 @@
       <p class="card-text">Length: {{ zone.lenght }}</p>
       <p class="card-text">Width: {{ zone.width }}</p>
       <p class="card-text">Garden Project: {{ zone.project.project_name }}</p>
+      {{zone.description}}
+      {% if zone.description %}
+          <h2>Description</h2>
+          {{ zone.description|safe }}
+      {% endif %}
     </div>
   </div>
   <form method="GET" action="{% url 'add_plant' zone_id=zone.pk %}">

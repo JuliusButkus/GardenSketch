@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 /* base style */
 body { 
     background-color: #CCCCCC;
@@ -6,7 +7,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     min-width: 100vh;
-   
+    
 }
 main {
     flex-grow: 1;
@@ -16,17 +17,19 @@ main {
     background-attachment: fixed;
     background-position: center;
     margin: 0;
-    font-family: Jost;
+    font-family: Jost sans-serif;
     color: #d8d8d8   
 }
 div.main-content {
     border: #04AA6D 2px solid;
-    background-color: rgba(236, 220, 220, 0.5) transparent 30%;
+    background-color: rgba(68, 167, 35, 0.25);
     border-radius: 1rem;
     padding: 2rem;
     margin-left: 40rem;
     margin-right: 40rem;
-    font-size: 16px;
+    font-family: Jost;
+    
+
     
 }
 img.logo {
@@ -45,14 +48,17 @@ header, footer {
 }
 header {
     background-color: #ECF6C4;
-    color: #afafaf;
+    color: rgb(4, 56, 30);
+    font-family: Jost sans-serif;
+    font-style: italic;
+    font-weight: 400;
 }
 footer {
     background-color: #ECF6C4;
     text-align: center;
 }
 header a {
-    color: #d8d8d8;
+    color: #332e2e;
     text-decoration: none;
 }
 header a:hover {

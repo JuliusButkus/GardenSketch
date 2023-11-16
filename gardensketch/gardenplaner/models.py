@@ -129,6 +129,7 @@ class Project(models.Model):
     )
     project_name = models.CharField(_("project name"), max_length=100)
     public = models.BooleanField(_("public"), default=False)
+    description = HTMLField(_("enter description"), max_length=10000, default='', blank=True)
 
     class Meta:
         verbose_name = _("project")
@@ -154,6 +155,8 @@ class Zone(models.Model):
         on_delete=models.CASCADE,
         related_name=_("zones"),
     )
+    description = HTMLField(_("enter description"), max_length=10000, default='', blank=True)
+    
     
     class Meta:
         verbose_name = _("zone")

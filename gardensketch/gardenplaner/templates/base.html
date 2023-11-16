@@ -26,8 +26,8 @@
                     </div>
                 </div>
                 <li class="spacer center"></li>
-                <li><a href="{% url 'my_projects'%}">{% trans "my projects"|title %}</a></li>
                 {% if user.is_authenticated %}
+                <li><a href="{% url 'my_projects'%}">{% trans "my projects"|title %}</a></li>
                     <li>
                         {% if user.profile.photo %}
                             <a href="{% url "profile" %}"><img class="nav-profile-photo" src="{{ user.profile.photo.url }}" alt="User Profile Picture"></a>
