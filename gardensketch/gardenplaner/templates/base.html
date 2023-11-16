@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 {% load static i18n%}
+<script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+<script>
+    tinymce.init({{ tinymce_config|safe }});
+</script>
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 <html lang="{{ LANGUAGE_CODE }}">

@@ -157,8 +157,6 @@ class ZoneDetailView(LoginRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['plants_dropdown_form'] = forms.PlantDropdownForm
-        # context['selected_plants'] = models.ZonePlant.objects.filter(zone=self.object)
-        # turetu teori6kai buti nereikalingi
         return context
 
 

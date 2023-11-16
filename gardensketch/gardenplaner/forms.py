@@ -1,22 +1,37 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
+from tinymce.widgets import TinyMCE
 from . import models
 
 
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = models.Project
-        fields = ['project_name', 'public', ]
+        fields = ['project_name', 'public', 'description']
         lables = {
             'project_name': _('project name'),
             'public': _('public'),
+            'description': _('description'),
+        }
+        widgets = {
+            'description': TinyMCE(),
         }
 
 
 class ZoneForm(forms.ModelForm):
     class Meta:
         model = models.Zone
-        fields = ['name', 'lenght', 'width', 'public']
+        fields = ['name', 'lenght', 'width', 'public', 'description']
+        lables = {
+            'name': _('name'),
+            'lenght': _('lenght'),
+            'width': _('width'),
+            'public': _('public'),
+            'description': _('description'),
+        }
+        widgets = {
+            'description': TinyMCE(),
+        }
 
 
 class PlantDropdownForm(forms.ModelForm):

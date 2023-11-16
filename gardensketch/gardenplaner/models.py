@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from tinymce.models import HTMLField
 from django.urls import reverse
 from PIL import Image
+import uuid
 
 User = get_user_model()
 
@@ -155,8 +156,7 @@ class Zone(models.Model):
         on_delete=models.CASCADE,
         related_name=_("zones"),
     )
-    description = HTMLField(_("enter description"), max_length=10000, default='', blank=True)
-    
+    description = HTMLField(_("enter description"), max_length=10000, default='', blank=True)   
     
     class Meta:
         verbose_name = _("zone")
