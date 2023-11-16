@@ -77,7 +77,6 @@ class PlantListView(generic.ListView):
 class MyProjectsView(generic.ListView):
     model = models.Project
     template_name = "gardenplaner/my_projects.html"
-    # context_object_name = "gardenproject_list"
     paginate_by = 10
 
 
@@ -148,27 +147,42 @@ class ZoneDetailView(generic.DetailView):
         return context
     
 
-class AddPlantView(generic.CreateView):
-    model = models.ZonePlant
-    form_class = forms.ZonePlantForm
+class AddZonePlantView(generic.View):
     template_name = 'gardenplaner/add_plant.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
+        context = {}
         context['zone'] = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
-        # context['plant'] = get_object_or_404(models.Plant, pk=self.request.GET.get('plant'))
+        context['plant'] = get_object_or_404(models.Plant, pk=self.request.GET.get('plant'))
+        context['form'] = forms.ZonePlantForm(initial=self.get_initial())
+        context['form'].fields['color'].queryset = models.Color.objects.filter(plants=self.request.GET.get('plant'))
         return context
-
+    
     def get_initial(self) -> dict[str, Any]:
-        initial = super().get_initial()
+        initial = {}
         initial['zone'] = self.kwargs['zone_id']
         initial['plant'] = self.request.GET.get('plant')
         return initial
     
-    def get_form(self, form_class: type[BaseModelForm] | None = ...) -> BaseModelForm:
-        form = forms.ZonePlantForm(initial=self.get_initial())
-        # form.fields['color'].queryset = models.Color.objects.filter(plant=self.request.GET.get('plant'))
-        return form
+    def get(self, request, zone_id):
+        context = self.get_context_data(zone_id=zone_id)
+        return render(request, self.template_name, context)
+   
+    def post(self, request, zone_id):
+        zone = get_object_or_404(models.Zone, pk=zone_id)
+        form = forms.ZonePlantForm(request.POST)  
+        if form.is_valid():
+            zone_plant = form.save(commit=False)
+            zone_plant.zone = zone
+            zone_plant.save()
+            return redirect('zone_detail', pk=zone_id)
+        else:
+            context = self.get_context_data(zone_id=zone_id)
+            return render(request, self.template_name, context)
+    
+    
+
+    
 
 
 class AddPhotoView(generic.View):  
@@ -177,7 +191,7 @@ class AddPhotoView(generic.View):
     def get(self, request, zone_id):
         zone = get_object_or_404(models.Zone, pk=zone_id)
         photos = models.Photo.objects.filter(zone=zone).all()
-        photo_form = forms.PhotoForm()  # Use the correct form from your forms module
+        photo_form = forms.PhotoForm()  
         context = {
             'zone': zone,
             'photos': photos,
@@ -201,3 +215,35 @@ class AddPhotoView(generic.View):
                 'photo_form': photo_form,
             }
             return render(request, self.template_name, context)
+        
+
+
+# class AddZonePlantView(generic.CreateView):
+#     model = models.ZonePlant
+#     form_class = forms.ZonePlantForm
+#     template_name = 'gardenplaner/add_plant.html'
+
+#     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+#         context = super().get_context_data(**kwargs)
+#         context['zone'] = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
+#         context['plant'] = get_object_or_404(models.Plant, pk=self.request.GET.get('plant'))
+#         return context
+
+#     def get_initial(self) -> dict[str, Any]:
+#         initial = super().get_initial()
+#         initial['zone'] = self.kwargs['zone_id']
+#         initial['plant'] = self.request.GET.get('plant')
+#         return initial
+    
+#     def get_form(self, form_class: type[BaseModelForm] | None = ...) -> BaseModelForm:
+#         form = forms.ZonePlantForm(initial=self.get_initial())
+#         form.fields['color'].queryset = models.Color.objects.filter(plants=self.request.GET.get('plant'))
+#         return form
+    
+#     def get_success_url(self) -> str:
+#         return reverse_lazy('zone_detail', kwargs={'pk': self.kwargs['zone_id']})
+    
+#     def form_valid(self, form):
+#         form.instance.zone = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
+#         form.instance.plant = get_object_or_404(models.Plant, pk=self.request.GET.get('plant'))
+#         return super().form_valid(form)

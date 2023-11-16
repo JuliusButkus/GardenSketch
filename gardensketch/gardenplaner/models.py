@@ -195,7 +195,7 @@ class ZonePlant(models.Model):
         verbose_name_plural = _("zone plants")
 
     def __str__(self):
-        return self.plant
+        return self.plant.name_en
 
     def get_absolute_url(self):
         return reverse("zoneplant_detail", kwargs={"pk": self.pk}) 
