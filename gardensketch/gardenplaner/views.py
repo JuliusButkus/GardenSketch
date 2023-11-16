@@ -224,4 +224,15 @@ class AddPhotoView(LoginRequiredMixin, generic.View):
                 'photo_form': photo_form,
             }
             return render(request, self.template_name, context)
-        
+
+
+class UpdateZoneView(LoginRequiredMixin, generic.UpdateView):
+    model = models.Zone
+    form_class = forms.ZoneForm
+    template_name = 'gardenplaner/update_zone.html'
+
+    def get_success_url(self):
+        return reverse_lazy('zone_detail', kwargs={'pk': self.object.id})
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        return super().form_valid(form)

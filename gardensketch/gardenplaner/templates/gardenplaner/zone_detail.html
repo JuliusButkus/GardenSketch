@@ -16,6 +16,7 @@
       {% endif %}
     </div>
   </div>
+  <a href="{% url 'update_zone' pk=zone.id %}">Update Zone</a>
   <form method="GET" action="{% url 'add_plant' zone_id=zone.pk %}">
     {{ plants_dropdown_form.as_p }}
     <button type="submit" class="btn btn-primary">Add Plant</button>
