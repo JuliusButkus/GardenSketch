@@ -236,3 +236,11 @@ class UpdateZoneView(LoginRequiredMixin, generic.UpdateView):
     
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         return super().form_valid(form)
+    
+
+class DeleteZonePlantView(generic.DeleteView):
+    model = models.ZonePlant
+    template_name = 'gardenplaner/delete_zone_plant.html'
+
+    def get_success_url(self):
+        return reverse_lazy('zone_detail', kwargs={'pk': self.object.zone.id})
