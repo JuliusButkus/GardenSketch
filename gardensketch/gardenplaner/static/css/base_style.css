@@ -21,19 +21,42 @@ main {
     color: #d8d8d8   
 }
 div.main-content {
-    border: #04AA6D 2px solid;
-    background-color: rgba(68, 167, 35, 0.25);
+    /* border: #04AA6D 2px solid; */
+    background-color: rgb(58, 77, 57, 0.9);
     border-radius: 1rem;
     padding: 2rem;
     margin-left: 40rem;
     margin-right: 40rem;
-    font-family: Jost;
+    font-family: 'Jost', sans-serif;
+    font-size: medium;
+    min-width: 600px;
+    max-width: 1000px;
+}
+a {
+    text-decoration: none;
+    color: rgb(170, 46, 15);
+    font-family: 'Jost', sans-serif;
+    font-size: large;
+    font-weight: 600;
+}
+a:hover {
+    color: rgb(255, 94, 0);
+    text-decoration: underline;
+}
     
-
-    
+div.card-body {
+    display: block;
+    flex: 3;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: left;
+    background-color: rgb(79, 111, 82);
+    border-radius: 1rem;
+    padding: 2rem;
+ 
 }
 img.logo {
-    height: 150px;
+    height: 110px;
     width: auto;
 }
 img.title {
@@ -49,8 +72,7 @@ header, footer {
 header {
     background-color: #ECF6C4;
     color: rgb(4, 56, 30);
-    font-family: Jost sans-serif;
-    font-style: italic;
+    font-family: 'Jost', sans-serif;
     font-weight: 400;
 }
 footer {
@@ -81,9 +103,13 @@ h1, h2, h3 {
 }
 h1 {
     font-size: 54px;
+    text-align: left;
 }
 h3 {
     font-size: 24px;
+}
+li {
+    list-style-type: none;
 }
 li.spacer {
     flex: 1;
