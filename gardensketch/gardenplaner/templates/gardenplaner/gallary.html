@@ -3,14 +3,6 @@
 {% block title %}{% trans "Plant types"|capfirst %} {{ block.super }}{% endblock title %}
 {% block content %}
 <h1>{% trans "gallery"|title %}</h1>
-{% comment %} <ul class="card-list">
-    {% for photo in photos %}
-    <ul>
-        <li>
-            <img src="{{ photo.image.url }}" alt="Photo">
-        </li>
-    </ul>
-{% endfor %} {% endcomment %}
 <ul class="card-list">
     {% for photo in photos %}
         <ul>
