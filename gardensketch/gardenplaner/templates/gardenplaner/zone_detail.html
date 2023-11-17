@@ -37,7 +37,7 @@
   {% endfor %}
 
   <h3>Photos</h3>
-  <button><a href="{% url 'add_photo' zone_id=zone.pk %}">ADD Photo</a></button>
+  <button><a href="{% url 'add_photo' zone_id=zone.pk %}">ADD Photo /Remove photos</a></button>
   {% for photo in zone.photos.all %}
     <div>
         {% if photo.image %}
