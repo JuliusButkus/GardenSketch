@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}{% trans "Plant types"|capfirst %} {{ block.super }}{% endblock title %}
+{% block content %}
+<h1>{% trans "gallery"|title %}</h1>
+{% comment %} <ul class="card-list">
+    {% for photo in photos %}
+    <ul>
+        <li>
+            <img src="{{ photo.image.url }}" alt="Photo">
+        </li>
+    </ul>
+{% endfor %} {% endcomment %}
+<ul class="card-list">
+    {% for photo in photos %}
+        <ul>
+            <li>
+                <h3>{{ photo.zone.project.project_name }}</h3>
+                <p>{% trans "created by:"|capfirst %}  {{ photo.zone.project.user }}</p>
+                <img src="{{ photo.image.url }}" alt="Photo">
+                <p>season: {{ photo.season }}</p>
+            </li>
+        </ul>
+    {% endfor %}               
+</ul>
+{% endblock content %}

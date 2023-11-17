@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, List
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator
@@ -34,6 +34,22 @@ def index(request: HttpRequest):
         'num_visits': num_visits,
     }
     return render(request, 'gardenplaner/index.html', context)
+
+class GalleryView(generic.ListView):
+    template_name = "gardenplaner/gallary.html"
+    context_object_name = "photos"
+
+    def get_queryset(self) -> List[models.Photo]:
+        queryset = models.Photo.objects.select_related('zone__project__user').filter(
+            zone__public=True,
+            zone__project__public=True,
+        )
+        return queryset
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["search"] = True
+        return context
 
 class TypeListView(generic.ListView):
     model = models.Type

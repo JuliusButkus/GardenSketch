@@ -237,7 +237,7 @@ class Photo(models.Model):
                 image.save(self.image.path)
 
     def __str__(self):
-        return self.image
+        return f"{self.image.url}"
     
     def get_absolute_url(self):
         if self.image:
