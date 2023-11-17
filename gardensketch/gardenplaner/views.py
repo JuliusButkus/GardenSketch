@@ -13,12 +13,19 @@ from . import models, forms
 from django.views.decorators.csrf import csrf_protect
 
 
-def delete_project_view(request, pk):
-    project = get_object_or_404(models.Project, pk=pk)
-    if request.method == 'POST':
-        project.delete()
-        return redirect('my_projects')
-    return render(request, 'gardenplaner/delete_project.html', {'project': project})
+class DeleteProjectView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = models.Project
+    template_name = 'gardenplaner/delete_project.html'
+    success_url = reverse_lazy('my_projects')  
+
+    def test_func(self) -> bool | None:
+        return self.request.user == self.get_object().user
+# def delete_project_view(request, pk):
+#     project = get_object_or_404(models.Project, pk=pk)
+#     if request.method == 'POST':
+#         project.delete()
+#         return redirect('my_projects')
+#     return render(request, 'gardenplaner/delete_project.html', {'project': project})
 
 def index(request: HttpRequest):
     num_visits = request.session.get('num_visits', 1)
@@ -119,15 +126,18 @@ class ProjectDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailV
         initial = super().get_initial()
         initial['user'] = self.request.user
         return initial
-       
-    
+
     def test_func(self) -> bool | None:
         self.object = self.get_object()
         return self.request.user == self.object.user
 
 
-class CreateZoneView(LoginRequiredMixin, generic.View):
+class CreateZoneView(LoginRequiredMixin, UserPassesTestMixin, generic.View):
     template_name = 'gardenplaner/create_zone.html'
+
+    def test_func(self) -> bool | None:
+        project = get_object_or_404(models.Project, pk=self.kwargs['project_id'])
+        return self.request.user == project.user
 
     def get(self, request, project_id):
         project = get_object_or_404(models.Project, pk=project_id)
@@ -145,7 +155,7 @@ class CreateZoneView(LoginRequiredMixin, generic.View):
             zone = zone_form.save(commit=False)
             zone.project = project
             zone.save()
-            return redirect('zone_detail',  pk=project.id)
+            return redirect('project_detail',  pk=project.id)
 
         return render(request, self.template_name, {
             'zone_form': zone_form,
@@ -153,9 +163,13 @@ class CreateZoneView(LoginRequiredMixin, generic.View):
         })
     
 
-class ZoneDetailView(LoginRequiredMixin, generic.DetailView):
+class ZoneDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
     model = models.Zone
     template_name = 'gardenplaner/zone_detail.html'
+
+    def test_func(self) -> bool | None:
+        self.object = self.get_object()
+        return self.request.user == self.object.project.user
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -163,9 +177,13 @@ class ZoneDetailView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
-class AddZonePlantView(LoginRequiredMixin, generic.View):
+class AddZonePlantView(LoginRequiredMixin, UserPassesTestMixin, generic.View):
     template_name = 'gardenplaner/add_plant.html'
 
+    def test_func(self) -> bool | None:
+        zone = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
+        return self.request.user == zone.project.user
+    
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = {}
         context['zone'] = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
@@ -197,8 +215,12 @@ class AddZonePlantView(LoginRequiredMixin, generic.View):
             return render(request, self.template_name, context)
     
     
-class AddPhotoView(LoginRequiredMixin, generic.View):  
+class AddPhotoView(LoginRequiredMixin, UserPassesTestMixin, generic.View):  
     template_name = "gardenplaner/add_photo.html" 
+
+    def test_func(self) -> bool | None:
+        zone = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
+        return self.request.user == zone.project.user
 
     def get(self, request, zone_id):
         zone = get_object_or_404(models.Zone, pk=zone_id)
@@ -229,10 +251,14 @@ class AddPhotoView(LoginRequiredMixin, generic.View):
             return render(request, self.template_name, context)
 
 
-class UpdateZoneView(LoginRequiredMixin, generic.UpdateView):
+class UpdateZoneView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = models.Zone
     form_class = forms.ZoneForm
     template_name = 'gardenplaner/update_zone.html'
+
+    def test_func(self) -> bool | None:
+        self.object = self.get_object()
+        return self.request.user == self.object.project.user
 
     def get_success_url(self):
         return reverse_lazy('zone_detail', kwargs={'pk': self.object.id})
@@ -241,9 +267,23 @@ class UpdateZoneView(LoginRequiredMixin, generic.UpdateView):
         return super().form_valid(form)
     
 
-class DeleteZonePlantView(generic.DeleteView):
+class DeleteZonePlantView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = models.ZonePlant
     template_name = 'gardenplaner/delete_zone_plant.html'
 
+    def test_func(self) -> bool | None:
+        self.object = self.get_object()
+        return self.request.user == self.object.zone.project.user
+
     def get_success_url(self):
-        return reverse_lazy('zone_detail', kwargs={'pk': self.object.zone.id})
+        return reverse_lazy('zone_detail', kwargs={'pk': self.kwargs['zone_id']})
+    
+
+# class DeleteZoneView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+#     model = models.Project
+#     template_name = 'gardenplaner/delete_zone.html'
+#     success_url = reverse_lazy('project')  
+
+#     def test_func(self) -> bool | None:
+#         self.object = self.get_object()
+#         return self.request.user == self.object.zone.project.user
