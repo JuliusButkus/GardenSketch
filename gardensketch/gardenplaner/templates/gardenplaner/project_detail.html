@@ -15,6 +15,7 @@
               <h3>{% trans "description:"|capfirst %}</h3>
               {{ project.description|safe }}
               {% endif %}</p>
+              <a href="{% url 'update_project' pk=project.id %}">Update project</a>
           <li class='line'></li>
           <div class="card">
             <button type="submit" class="btn btn-danger"><a href="{% url 'create_zone' project_id=project.id %}" class="btn btn-success">Create Zone</a></button>s

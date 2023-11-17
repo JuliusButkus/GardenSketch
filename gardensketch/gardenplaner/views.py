@@ -251,6 +251,22 @@ class AddPhotoView(LoginRequiredMixin, UserPassesTestMixin, generic.View):
             return render(request, self.template_name, context)
 
 
+class UpdateProjectView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = models.Project
+    form_class = forms.ProjectForm
+    template_name = 'gardenplaner/update_project.html'
+
+    def test_func(self) -> bool | None:
+        self.object = self.get_object()
+        return self.request.user == self.object.user
+
+    def get_success_url(self):
+        return reverse_lazy('project_detail', kwargs={'pk': self.object.id})
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        return super().form_valid(form)
+
+
 class UpdateZoneView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = models.Zone
     form_class = forms.ZoneForm
