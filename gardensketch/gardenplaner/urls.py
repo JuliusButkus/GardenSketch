@@ -20,6 +20,7 @@ urlpatterns = [
     
     path('zone/<int:pk>/update/', views.UpdateZoneView.as_view(), name='update_zone'),
     path('zone/<int:zone_id>/plant/<int:pk>/delete/', views.DeleteZonePlantView.as_view(), name='delete_zone_plant'),
+    path('zone/<int:zone_id>/photo/<int:pk>/delete/', views.DeleteZonePhotoView.as_view(), name='delete_zone_photo'),
 
     
 ]

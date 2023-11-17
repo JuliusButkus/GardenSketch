@@ -291,13 +291,15 @@ class DeleteZoneView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView
         return reverse_lazy('project_detail', kwargs={'pk': self.kwargs['project_id']})
     
 
-class deletePhotoView(LoginRequiredMixin, UserPassesTestMixin, generic.View):
-    model = models.Zone
-    template_name = 'gardenplaner/user_photos.html'
-    
-    def test_func(self) -> bool | None:
-        zone = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
-        return self.request.user == zone.project.user
+class DeleteZonePhotoView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = models.Photo
+    template_name = 'gardenplaner/delete_zone_photo.html'
 
+    def test_func(self) -> bool | None:
+        self.object = self.get_object()
+        return self.request.user == self.object.zone.project.user
+
+    def get_success_url(self):
+        return reverse_lazy('zone_detail', kwargs={'pk': self.kwargs['zone_id']})
     
     

@@ -9,6 +9,16 @@
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Add Plant</button>
   </form>
-
   <a href="{% url 'zone_detail' pk=zone.id %}" class="btn btn-primary">Back to Zone</a>
+  <h3>Photos</h3>
+  {% for photo in zone.photos.all %}
+    <div>
+        {% if photo.image %}
+            <img src="{{ photo.image.url }}" alt="Photo">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+        <p>season: {{ photo.season }}</p>
+    </div>
+{% endfor %}
 {% endblock %}
