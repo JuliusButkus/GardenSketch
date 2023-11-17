@@ -84,9 +84,12 @@ class MyProjectsView(LoginRequiredMixin, generic.ListView):
         return queryset
 
 
-class CreateProjectView(LoginRequiredMixin, generic.View):
+class CreateProjectView(LoginRequiredMixin, UserPassesTestMixin, generic.View):
     template_name = 'gardenplaner/create_project.html'
 
+    def test_func(self) -> bool | None:
+        return self.request.user.is_authenticated
+    
     def get(self, request, *args, **kwargs):
         form = forms.ProjectForm()
         return render(request, self.template_name, {'form': form})
