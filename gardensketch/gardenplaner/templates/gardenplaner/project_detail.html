@@ -4,45 +4,43 @@
 {% block content %}
 <div class="container">
   <div class="content">
-      <div class="main-content">
-        <h1>{{ project.project_name }} </h1>
-          <p>{% trans "created by:"|capfirst %} 
-            {{ project.user.username }}</p>
-          <p>{% trans "public:"|capfirst %}
-            {% if project.public %}{%trans "yes" %}
-            {% else %}{% trans "no" %}{% endif %}</p>
-          <p>{% if project.description %}
-              <h3>{% trans "description:"|capfirst %}</h3>
-              {{ project.description|safe }}
-              {% endif %}</p>
-              <a href="{% url 'update_project' pk=project.id %}">Update project</a>
-          <li class='line'></li>
-          <div class="card">
-            <button type="submit" class="btn btn-danger"><a href="{% url 'create_zone' project_id=project.id %}" class="btn btn-success">Create Zone</a></button>s
-              {% if zones.all %}
-              {% for zone in zones.all %}
-              <div class="card-body">
-                <li>
-                  <p><a href="{% url 'zone_detail' pk=zone.id %}">{{ zone.name }}</a></p>
-                  <p class="card-text">Length: {{ zone.lenght }}</p>
-                  <p class="card-text">Width: {{ zone.width }}</p>
-                  <a href="{% url 'delete_zone' project_id=project.id pk=zone.id %}">Delete Zone</a>
-                </li>
-              </div>
-              {% endfor %}
-              {% else %}
-                <p>No Zones created yet</p>
-              
-              {% endif %}
+    <div class="main-content">
+      <h1>{{ project.project_name }} </h1>
+        <p>{% trans "created by:"|capfirst %} 
+          {{ project.user.username }}</p>
+        <p>{% trans "public:"|capfirst %}
+          {% if project.public %}{%trans "yes" %}
+          {% else %}{% trans "no" %}{% endif %}</p>
+        <p>{% if project.description %}
+            <h3>{% trans "description:"|capfirst %}</h3>
+            {{ project.description|safe }}
+            {% endif %}</p>
+            <a href="{% url 'update_project' pk=project.id %}">{% trans "Update project"|capfirst %}</a>
+        <li class='line'></li>
+        <div class="card">
+          <button type="submit" class="btn btn-danger"><a href="{% url 'create_zone' project_id=project.id %}" class="btn btn-success">Create Zone</a></button>s
+            {% if zones.all %}
+            {% for zone in zones.all %}
+            <div class="card-body">
+              <li>
+                <p><a href="{% url 'zone_detail' pk=zone.id %}">{{ zone.name }}</a></p>
+                <p class="card-text">Length: {{ zone.lenght }}</p>
+                <p class="card-text">Width: {{ zone.width }}</p>
+                <a href="{% url 'delete_zone' project_id=project.id pk=zone.id %}">Delete Zone</a>
+              </li>
+            </div>
+            {% endfor %}
+            {% else %}
+              <p>No Zones created yet</p>
             
-            <form method="post" action="{% url 'delete_project' pk=project.id %}" style="display: inline;">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-danger"><a href="{% url 'delete_project' pk=project.id %}">Delete Project</a></button>
-            </form>
-            <a href="{% url 'my_projects' %}" class="btn btn-primary">Back to My Projects</a>
-          </div>
+            {% endif %}
+          
+          <form method="post" action="{% url 'delete_project' pk=project.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger"><a href="{% url 'delete_project' pk=project.id %}">Delete Project</a></button>
+          </form>
+          <a href="{% url 'my_projects' %}" class="btn btn-primary">Back to My Projects</a>
         </div>
-      </div>
     </div>
   </div>
 </div>

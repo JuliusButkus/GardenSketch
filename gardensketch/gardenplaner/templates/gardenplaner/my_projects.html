@@ -5,29 +5,20 @@
 <div class="container">
   <div class="content">
     <div class="main-content">
-      <h1>My Projects</h1>
-        <div class="mb-3">
-          <a href="{% url 'create_project' %}" class="btn btn-success">Create New Project</a>
+      <h1>{% trans "my projects"|title %}</h1>
+      <a href="{% url 'create_project' %}" class="btn btn-success">{% trans "create new project"|capfirst %}</a>
+      <div class="card-list">
+      {% for project in project_list %}
+        <div class="card">
+            <h2>{{ project.project_name }}</h2>
+            <p>{% trans "Created by" %}: {{ project.user.username }}</p>
+            {% if project.description %}
+          <h5>{% trans "description"|capfirst %} <p>{{ project.description|safe }}</p></h5>
+          {% endif %}
+            <a href="{% url 'project_detail' pk=project.id %}" class="btn btn-primary">{% trans "View Details" %}</a>
         </div>
-        <div class="row">
-          <div class="col-md-8">
-            {% for project in project_list %}
-              <div class="card mb-3">
-                <div class="card-body">
-                  <h2 class="card-title">{{ project.project_name }}</h2>
-                  <p class="card-text">Created by: {{ project.user.username }}</p>
-                  {% if project.description %}
-                <h5>Description <p>{{ project.description|safe }}</p></h5>
-                {% endif %}
-                  <a href="{% url 'project_detail' pk=project.id %}" class="btn btn-primary">View Details</a>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-        <div class="col-md-4">
-          <!-- You can include additional content or widgets here -->
-        </div>
+      {% endfor %}
+      </div>
     </div>
   </div>
 </div>
