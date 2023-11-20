@@ -2,13 +2,17 @@
 {% load static i18n %}
 {% block title %} {{ block.super }}{% endblock title %}
 {% block content %}
-  <h2>Confirm Deletion</h2>
-  <p>Are you sure you want to delete the zone "{{ zone.name }}"?</p>
-
-  <form method="post" action="{{ request.path }}">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Yes, Delete</button>
-  </form>
-
-  <a href="{% url 'zone_detail' pk=zone.id %}" class="btn btn-secondary">No, Cancel</a>
+<div class="container">
+  <div class="content">
+      <div class="form-main-content center">
+      <h2>{% trans "Confirm Deletion" %}</h2>
+      <p>{% trans "Are you sure you want to delete the zone" %} "{{ zone.name }}"?</p>
+      <form method="post" action="{{ request.path }}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">{% trans "Yes, Delete" %}</button>
+      </form>
+      <a href="{% url 'zone_detail' pk=zone.id %}" class="btn btn-secondary">{% trns "cancel"|capfirst %}</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

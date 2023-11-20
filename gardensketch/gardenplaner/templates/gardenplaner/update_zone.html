@@ -2,10 +2,16 @@
 {% load static i18n %}
 {% block title %} {{ block.super }}{% endblock title %}
 {% block content %}
-  <h1>Update Zone</h1>
-  <form method="post" action="{% url 'update_zone' pk=zone.id %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save changes</button>
-  </form>
+<div class="container">
+  <div class="content">
+    <div class="form-main-content center">
+    <h1>{% trans "Update Zone" %}: {{ zone.name }}</h1>
+    <form method="post" action="{% url 'update_zone' pk=zone.id %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">{% trans "Save changes" %}</button>
+    </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

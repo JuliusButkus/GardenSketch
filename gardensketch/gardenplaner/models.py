@@ -186,7 +186,7 @@ class Project(models.Model):
 
 class Zone(models.Model):
     name = models.CharField(
-        _("name in Lithuanian language"), 
+        _("name"), 
         max_length=50, 
         blank=True
     )
