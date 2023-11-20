@@ -1,6 +1,5 @@
 {% load static i18n%}
 <li class="center">
-    {% comment %} <a href="{% url "book_detail" book.pk %}"> {% endcomment %}
     {% if LANGUAGE_CODE == "lt" %}
         <h4>{{ plant_type.name_lt }}</h4>
         <p>{{ plant_type.description_lt }}</p>
@@ -8,6 +7,5 @@
         <h4>{{ plant_type.name_en }}</h4>
         <p>{{ plant_type.description_en }}</p>
     {% endif %}
-    <img class="plant-type-photo" src="{% static "img/logo.png" %}">
-    {% comment %} </a>  {% endcomment %}
+    <img class="plant-type-photo" src="{% static "img/logo.png" %}">  
 </li>

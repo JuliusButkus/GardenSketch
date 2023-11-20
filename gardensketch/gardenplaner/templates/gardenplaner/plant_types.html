@@ -2,13 +2,19 @@
 {% load static i18n %}
 {% block title %}{% trans "Plant types"|capfirst %} {{ block.super }}{% endblock title %}
 {% block content %}
-<h1>{% trans "plant types"|title %}</h1>
-{% comment %} {% include "library/inc/pager_prev_next.html" %} {% endcomment %}
-<ul class="card-list">
-{% for plant_type in object_list %}
-    {% include "gardenplaner/inc/plant_types_card.html" %}
-{% empty %}
-    <p>{% trans "no plant types found"|capfirst %}.</p>
-{% endfor %}
-</ul>
+<div class="container">
+    <div class="content">
+        <div class="main-content">
+        <h1>{% trans "plant types"|title %}</h1>
+        <div class="card-list">
+            {% for plant_type in object_list %}
+                <div class="card">
+                {% include "gardenplaner/inc/plant_types_card.html" %}
+                </div>
+            {% empty %}
+                <p>{% trans "no plant types found"|capfirst %}.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock content %}
