@@ -20,12 +20,7 @@ class DeleteProjectView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteV
 
     def test_func(self) -> bool | None:
         return self.request.user == self.get_object().user
-# def delete_project_view(request, pk):
-#     project = get_object_or_404(models.Project, pk=pk)
-#     if request.method == 'POST':
-#         project.delete()
-#         return redirect('my_projects')
-#     return render(request, 'gardenplaner/delete_project.html', {'project': project})
+
 
 def index(request: HttpRequest):
     num_visits = request.session.get('num_visits', 1)
@@ -50,6 +45,7 @@ class GalleryView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context["search"] = True
         return context
+
 
 class TypeListView(generic.ListView):
     model = models.Type
@@ -127,7 +123,6 @@ class CreateProjectView(LoginRequiredMixin, UserPassesTestMixin, generic.View):
         return render(request, self.template_name, {'form': form})
     
     
-
 class ProjectDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
     model = models.Project
     template_name = "gardenplaner/project_detail.html"
@@ -166,13 +161,12 @@ class CreateZoneView(LoginRequiredMixin, UserPassesTestMixin, generic.View):
     def post(self, request, project_id):
         project = get_object_or_404(models.Project, pk=project_id)
         zone_form = forms.ZoneForm(request.POST)
-
         if zone_form.is_valid():
             zone = zone_form.save(commit=False)
             zone.project = project
             zone.save()
             return redirect('project_detail',  pk=project.id)
-
+        
         return render(request, self.template_name, {
             'zone_form': zone_form,
             'project': project
@@ -203,9 +197,12 @@ class AddZonePlantView(LoginRequiredMixin, UserPassesTestMixin, generic.View):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = {}
         context['zone'] = get_object_or_404(models.Zone, pk=self.kwargs['zone_id'])
-        context['plant'] = get_object_or_404(models.Plant, pk=self.request.GET.get('plant'))
+        context['plant'] = get_object_or_404(
+            models.Plant, pk=self.request.GET.get('plant')
+            )
         context['form'] = forms.ZonePlantForm(initial=self.get_initial())
-        context['form'].fields['color'].queryset = models.Color.objects.filter(plants=self.request.GET.get('plant'))
+        context['form'].fields['color'].queryset = models.Color.objects.filter(
+            plants=self.request.GET.get('plant'))
         return context
     
     def get_initial(self) -> dict[str, Any]:
