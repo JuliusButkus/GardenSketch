@@ -161,7 +161,21 @@ p.title {
 p {
     margin: 0;
 }
-
+div.pager {
+  margin: 0.5rem 1rem;
+}
+/* div.pager a {
+  border: 1px solid #ccaa77;
+  background-color: #d8d8d8;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+} */
+div.pager a:hover {
+  background-color: #dddddd;
+}
+div.pager form {
+  display: inline-block;
+}
 
 /* mano drop down parametrai zemiau */
 /* Add a black background color to the top navigation */
