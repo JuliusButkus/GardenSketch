@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 /* base style */
 body { 
-    background-color: #CCCCCC;
+    /* background-color: #CCCCCC; */
     padding: 0; margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    min-width: 100vh;
-    
+    min-width: 100vh;   
+}
+.nav-profile-photo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 main {
     flex-grow: 1;
@@ -20,6 +24,11 @@ main {
     font-family: Jost sans-serif;
     color: #d8d8d8   
 }
+div.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 div.main-content {
     /* border: #04AA6D 2px solid; */
     background-color: rgb(58, 77, 57, 0.9);
@@ -31,6 +40,25 @@ div.main-content {
     font-size: medium;
     min-width: 600px;
     max-width: 1000px;
+}
+div.form-main-content {
+  background-color: rgb(58, 77, 57, 0.9);
+  border-radius: 1rem;
+  flex: 1;
+  text-align: left;
+  margin-top: 9rem;
+  padding-top: 10rem;
+  padding: 3.5rem;
+  min-width: 300px;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+div.form-main-content h1 {
+  text-align: center;
+}
+form p label {
+  min-width: 10rem;
+  display: inline-block;
 }
 a {
     text-decoration: none;
@@ -117,6 +145,9 @@ li.spacer {
 p.title {
     text-align: center;
 }
+
+
+/* mano drop down parametrai zemiau */
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: #333;

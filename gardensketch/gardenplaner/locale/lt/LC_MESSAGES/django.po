@@ -1,0 +1,289 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-20 13:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
+"1 : n % 1 != 0 ? 2: 3);\n"
+#: gardenplaner/forms.py:12 gardenplaner/models.py:167
+msgid "project name"
+msgstr ""
+
+#: gardenplaner/forms.py:13 gardenplaner/forms.py:29 gardenplaner/models.py:168
+#: gardenplaner/models.py:195
+msgid "public"
+msgstr ""
+
+#: gardenplaner/forms.py:14 gardenplaner/forms.py:30
+msgid "description"
+msgstr ""
+
+#: gardenplaner/forms.py:26
+msgid "name"
+msgstr ""
+
+#: gardenplaner/forms.py:27
+msgid "lenght"
+msgstr ""
+
+#: gardenplaner/forms.py:28
+msgid "width"
+msgstr ""
+
+#: gardenplaner/models.py:13 gardenplaner/models.py:102
+msgid "name in English language"
+msgstr ""
+
+#: gardenplaner/models.py:14 gardenplaner/models.py:103
+#: gardenplaner/models.py:189
+msgid "name in Lithuanian language"
+msgstr ""
+
+#: gardenplaner/models.py:16 gardenplaner/models.py:21
+#: gardenplaner/models.py:105
+msgid "description in English language"
+msgstr ""
+
+#: gardenplaner/models.py:26 gardenplaner/models.py:257
+msgid "add image"
+msgstr ""
+
+#: gardenplaner/models.py:33 gardenplaner/models.py:134
+msgid "type"
+msgstr ""
+
+#: gardenplaner/models.py:34
+msgid "types"
+msgstr ""
+
+#: gardenplaner/models.py:91
+msgid "plantTime"
+msgstr ""
+
+#: gardenplaner/models.py:92
+msgid "plantTimes"
+msgstr ""
+
+#: gardenplaner/models.py:110
+msgid "description in Lithuanian language"
+msgstr ""
+
+#: gardenplaner/models.py:116 gardenplaner/models.py:140
+#: gardenplaner/models.py:241
+msgid "color"
+msgstr ""
+
+#: gardenplaner/models.py:117
+msgid "colors"
+msgstr ""
+
+#: gardenplaner/models.py:136 gardenplaner/models.py:141
+#: gardenplaner/models.py:147 gardenplaner/models.py:151
+msgid "plants"
+msgstr ""
+
+#: gardenplaner/models.py:145
+msgid "planting time"
+msgstr ""
+
+#: gardenplaner/models.py:150 gardenplaner/models.py:236
+msgid "plant"
+msgstr ""
+
+#: gardenplaner/models.py:163
+msgid "user"
+msgstr ""
+
+#: gardenplaner/models.py:165 gardenplaner/models.py:178
+msgid "projects"
+msgstr ""
+
+#: gardenplaner/models.py:170 gardenplaner/models.py:203
+msgid "enter description"
+msgstr ""
+
+#: gardenplaner/models.py:177
+msgid "project"
+msgstr ""
+
+#: gardenplaner/models.py:193
+msgid "enter lenght"
+msgstr ""
+
+#: gardenplaner/models.py:194
+msgid "enter width"
+msgstr ""
+
+#: gardenplaner/models.py:198
+msgid "garden project"
+msgstr ""
+
+#: gardenplaner/models.py:200 gardenplaner/models.py:211
+msgid "zones"
+msgstr ""
+
+#: gardenplaner/models.py:210 gardenplaner/models.py:230
+#: gardenplaner/models.py:270
+msgid "zone"
+msgstr ""
+
+#: gardenplaner/models.py:222
+msgid "enter blooming period"
+msgstr ""
+
+#: gardenplaner/models.py:226
+msgid "enter quantity"
+msgstr ""
+
+#: gardenplaner/models.py:227
+msgid "enter plants price of unit"
+msgstr ""
+
+#: gardenplaner/models.py:232 gardenplaner/models.py:238
+#: gardenplaner/models.py:243
+msgid "zone_plants"
+msgstr ""
+
+#: gardenplaner/models.py:246
+msgid "zone plant"
+msgstr ""
+
+#: gardenplaner/models.py:247
+msgid "zone plants"
+msgstr ""
+
+#: gardenplaner/models.py:261
+msgid "select season"
+msgstr ""
+
+#: gardenplaner/models.py:272 gardenplaner/models.py:277
+msgid "photos"
+msgstr ""
+
+#: gardenplaner/models.py:276
+msgid "photo"
+msgstr ""
+
+#: gardenplaner/templates/base.html:34
+msgid "my projects"
+msgstr ""
+
+#: gardenplaner/templates/base.html:43
+msgid "admin"
+msgstr ""
+
+#: gardenplaner/templates/base.html:45
+msgid "logout"
+msgstr ""
+
+#: gardenplaner/templates/base.html:47
+msgid "Welcome"
+msgstr ""
+
+#: gardenplaner/templates/base.html:48
+msgid "Login"
+msgstr ""
+
+#: gardenplaner/templates/base.html:49
+msgid "Sign Up"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/gallary.html:3
+#: gardenplaner/templates/gardenplaner/plant_types.html:3
+msgid "Plant types"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/gallary.html:8
+msgid "gallery"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/gallary.html:14
+#: gardenplaner/templates/gardenplaner/project_detail.html:9
+msgid "created by:"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/index.html:9
+msgid "Bringing Your Garden Dreams to Life!"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:3
+msgid "plants list"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:11
+msgid "First"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:13
+msgid "Previous"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:19
+msgid "Next"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:21
+msgid "Last"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:25
+msgid "search beer"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:27
+msgid "reset"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:38
+msgid "Price"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:39
+msgid "Available Liters"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:40
+msgid "Beer Type"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_list.html:46
+msgid "No plant available"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_types.html:5
+msgid "plant types"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/plant_types.html:12
+msgid "no plant types found"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:11
+msgid "public:"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:12
+msgid "yes"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:13
+msgid "no"
+msgstr ""
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:15
+msgid "description:"
+msgstr ""

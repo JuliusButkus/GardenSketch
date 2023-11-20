@@ -1,0 +1,213 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-20 13:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
+"1 : n % 1 != 0 ? 2: 3);\n"
+#: userprofile/models.py:14
+msgid "user"
+msgstr "vartotojas"
+
+#: userprofile/models.py:20
+msgid "photo"
+msgstr "nuotrauka"
+
+#: userprofile/models.py:27 userprofile/templates/user_profile/profile.html:8
+msgid "profile"
+msgstr "profilis"
+
+#: userprofile/models.py:28
+msgid "profiles"
+msgstr "profiliai"
+
+#: userprofile/templates/registration/logged_out.html:3
+msgid "Logged out from"
+msgstr "Atsijungta iš"
+
+#: userprofile/templates/registration/logged_out.html:9
+msgid "Logged out"
+msgstr "Atsijungta"
+
+#: userprofile/templates/registration/logged_out.html:10
+msgid "You are logged out"
+msgstr "Jūs atsijungėte"
+
+#: userprofile/templates/registration/logged_out.html:11
+msgid "log in"
+msgstr "prosijungti"
+
+#: userprofile/templates/registration/login.html:3
+msgid "Log into"
+msgstr "prisijungti į"
+
+#: userprofile/templates/registration/login.html:9
+#: userprofile/templates/user_profile/signup.html:31
+msgid "Log in"
+msgstr "Prisijungti"
+
+#: userprofile/templates/registration/login.html:13
+msgid "Log In"
+msgstr "Prisijungti"
+
+#: userprofile/templates/registration/login.html:15
+msgid "Forgot password"
+msgstr "Pamiršau slaptažodį"
+
+#: userprofile/templates/registration/login.html:16
+msgid "Don't have an account"
+msgstr "Neturite paskyros"
+
+#: userprofile/templates/registration/login.html:16
+#: userprofile/templates/user_profile/signup.html:9
+msgid "sign up"
+msgstr "prisiregistruoti"
+
+#: userprofile/templates/registration/password_reset_complete.html:3
+#: userprofile/templates/registration/password_reset_done.html:3
+msgid "Password reset at"
+msgstr "Naujas Slaptažodis"
+
+#: userprofile/templates/registration/password_reset_complete.html:10
+msgid "Password Reset Done"
+msgstr "slpatažodžio pakeitimas atliktas"
+
+#: userprofile/templates/registration/password_reset_complete.html:11
+msgid "You can"
+msgstr "Tu gali"
+
+#: userprofile/templates/registration/password_reset_complete.html:11
+msgid "login"
+msgstr "prisijungti"
+
+#: userprofile/templates/registration/password_reset_complete.html:11
+msgid "now with your new password"
+msgstr "dabar su nauju slaptažodžiu"
+
+#: userprofile/templates/registration/password_reset_confirm.html:3
+#: userprofile/templates/registration/password_reset_form.html:3
+msgid "Password Reset at"
+msgstr "Naujas Slaptažodis"
+
+#: userprofile/templates/registration/password_reset_confirm.html:9
+msgid "Enter New Password"
+msgstr "Įveskite Naują Slaptažodį"
+
+#: userprofile/templates/registration/password_reset_confirm.html:13
+#: userprofile/templates/registration/password_reset_form.html:13
+msgid "Confirm"
+msgstr "Patvirtinti"
+
+#: userprofile/templates/registration/password_reset_done.html:9
+msgid "Check Your Email"
+msgstr "Patikrinti Elektroninį paštą"
+
+#: userprofile/templates/registration/password_reset_done.html:10
+msgid "We have sent you an email with further instructions."
+msgstr "mes jums išsiuntėme elektroninį laišką su tolimėsnemis instrukcijomis"
+
+#: userprofile/templates/registration/password_reset_form.html:9
+msgid "Reset Your Password"
+msgstr "Pakeiskite Slaptažodį"
+
+#: userprofile/templates/user_profile/profile.html:3
+msgid "profile at"
+msgstr "profilis"
+
+#: userprofile/templates/user_profile/profile.html:15
+msgid "first name"
+msgstr "vardas"
+
+#: userprofile/templates/user_profile/profile.html:17
+msgid "First Name is not available"
+msgstr "Vardas nenurodytas"
+
+#: userprofile/templates/user_profile/profile.html:20
+msgid "last name"
+msgstr "Pavardė"
+
+#: userprofile/templates/user_profile/profile.html:22
+msgid "Last Name is not available"
+msgstr "Pavardė nenurodyta"
+
+#: userprofile/templates/user_profile/profile.html:24
+msgid "email"
+msgstr "elektroninis paštas"
+
+#: userprofile/templates/user_profile/profile.html:27
+msgid "update"
+msgstr "atnaujinti"
+
+#: userprofile/templates/user_profile/signup.html:3
+msgid "Sign up to"
+msgstr "prisiregistruoti"
+
+#: userprofile/templates/user_profile/signup.html:13
+msgid "username"
+msgstr "vartotojas"
+
+#: userprofile/templates/user_profile/signup.html:17
+msgid "E-mail"
+msgstr "Elektroninis paštas"
+
+#: userprofile/templates/user_profile/signup.html:21
+msgid "password"
+msgstr "slaptažodis"
+
+#: userprofile/templates/user_profile/signup.html:25
+msgid "repeat password"
+msgstr "pakartokite slaptažodį"
+
+#: userprofile/templates/user_profile/signup.html:28
+msgid "confirm"
+msgstr "patvirtinti"
+
+#: userprofile/templates/user_profile/signup.html:30
+msgid "Already have account"
+msgstr "Jau yra tokia paskyra"
+
+#: userprofile/templates/user_profile/update.html:3
+msgid "Update Your Profile at"
+msgstr "Atnaujinti Profilį į"
+
+#: userprofile/templates/user_profile/update.html:8
+msgid "update your profile"
+msgstr "atnaujinti paskirą"
+
+#: userprofile/templates/user_profile/update.html:13
+msgid "save changes"
+msgstr "išsaugoti pakeitimus"
+
+#: userprofile/views.py:28
+msgid "Your user profile changes have been saved."
+msgstr "Profilio pakeitimai išsaugoti"
+
+#: userprofile/views.py:58
+msgid "Username is already taken, or is too short."
+msgstr "Toks vartotojo vardas jau yra arba jis per trumpas"
+
+#: userprofile/views.py:60
+msgid "Email must be valid and not belonging to an existing user."
+msgstr "Elektroninis paštas turi buti tinkamas ir nepriklausyti jau esamiems vartotojams"
+
+#: userprofile/views.py:63
+msgid "Password is too short, or entered passwords do not match."
+msgstr "Slaptažodis pertrumpas arba slpatažodžiai nesutampa"
+
+#: userprofile/views.py:79
+msgid "Sign up successful. You can log in now."
+msgstr "Registracija sėkminga. Galite prisijungti"
