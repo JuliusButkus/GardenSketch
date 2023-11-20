@@ -29,15 +29,16 @@ div.content {
   justify-content: center;
 }
 div.main-content {
-    background-color: rgb(58, 77, 57, 0.9);
-    border-radius: 1rem;
-    padding: 2rem;
-    margin-left: 40rem;
-    margin-right: 40rem;
-    font-family: 'Jost', sans-serif;
-    font-size: medium;
-    min-width: 600px;
-    max-width: 1200px;
+  position: relative;
+  background-color: rgb(58, 77, 57, 0.9);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-left: 40rem;
+  margin-right: 40rem;
+  font-family: 'Jost', sans-serif;
+  font-size: medium;
+  min-width: 600px;
+  max-width: 1200px;
 }
 div.form-main-content {
   background-color: rgb(58, 77, 57, 0.9);
@@ -208,7 +209,7 @@ div.pager form {
   
   /* Dropdown container - needed to position the dropdown content */
   .dropdown {
-    float: left;
+    float: right;
     overflow: hidden;
   }
   
