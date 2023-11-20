@@ -6,18 +6,18 @@
     <div class="content">
         <div class="main-content">
         <h1>{% trans "gallery"|title %}</h1>
-        <ul class="card-list">
+        <div class="card-list">
             {% for photo in photos %}
-                <ul>
-                    <li>
-                        <h3>{{ photo.zone.project.project_name }}</h3>
-                        <p>{% trans "created by:"|capfirst %}  {{ photo.zone.project.user }}</p>
-                        <img src="{{ photo.image.url }}" alt="Photo">
-                        <p>season: {{ photo.season }}</p>
-                    </li>
-                </ul>
+            <div class="card">
+                <li>
+                    <h3>{{ photo.zone.project.project_name }}</h3>
+                    <p>{% trans "created by:"|capfirst %}  {{ photo.zone.project.user }}</p>
+                    <img src="{{ photo.image.url }}" alt="Photo">
+                    <p>{% trans "season" %}: {{ photo.season }}</p>
+                </li>
+            </div>
             {% endfor %}               
-        </ul>
+        </div>
         </div>
     </div>
 </div>

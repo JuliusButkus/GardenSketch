@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
-/* base style */
+/* base main div styles */
 body { 
-    /* background-color: #CCCCCC; */
     padding: 0; margin: 0;
     display: flex;
     flex-direction: column;
@@ -30,7 +29,6 @@ div.content {
   justify-content: center;
 }
 div.main-content {
-    /* border: #04AA6D 2px solid; */
     background-color: rgb(58, 77, 57, 0.9);
     border-radius: 1rem;
     padding: 2rem;
@@ -56,6 +54,26 @@ div.form-main-content {
 div.form-main-content h1 {
   text-align: center;
 }
+div.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  max-width: fit-content;
+}
+div.card {
+  width: 45%; 
+  margin-bottom: 10px; 
+  border: #04AA6D 2px;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: rgb(58, 77, 57, 0.9);
+}
+@media (max-width: 600px) {
+  .card {
+      width: 100%; 
+  }
+}
+/* form styles */
 form p label {
   min-width: 10rem;
   display: inline-block;
@@ -71,18 +89,7 @@ a:hover {
     color: rgb(255, 94, 0);
     text-decoration: underline;
 }
-    
-div.card-body {
-    display: block;
-    flex: 3;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: left;
-    background-color: rgb(79, 111, 82);
-    border-radius: 1rem;
-    padding: 2rem;
- 
-}
+/* image styles */
 img.logo {
     height: 110px;
     width: auto;
@@ -92,6 +99,10 @@ img.title {
     max-width: fit-content;
     height: auto;
     width: 100%;
+}
+.card img {
+  max-width: 100%; 
+  height: auto;
 }
 header, footer {
     padding: 0;
@@ -126,12 +137,14 @@ header ul.nav li {
     padding: 0.5rem;
 }
 h1, h2, h3 {  
-    padding: 1rem;
-    background-color: transparent;   
+    padding: 0.2rem;
+    background-color: transparent;
+    margin: 0;   
 }
 h1 {
     font-size: 54px;
     text-align: left;
+    margin: 0;
 }
 h3 {
     font-size: 24px;
@@ -144,6 +157,9 @@ li.spacer {
 }
 p.title {
     text-align: center;
+}
+p {
+    margin: 0;
 }
 
 
