@@ -16,7 +16,12 @@ class Profile(models.Model):
         related_name="profile",
         null=True, blank=True
     )
-    photo = models.ImageField(verbose_name=_("photo"), upload_to="user/profile/img/", null=True, blank=True)
+    photo = models.ImageField(
+        verbose_name=_("photo"), 
+        upload_to="user/profile/img/", 
+        null=True, 
+        blank=True
+    )
 
     class Meta:
         verbose_name =_("profile")

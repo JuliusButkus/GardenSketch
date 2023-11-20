@@ -12,12 +12,35 @@ User = get_user_model()
 class Type(models.Model):
     name_en = models.CharField(_('name in English language'), max_length=100)
     name_lt = models.CharField(_('name in Lithuanian language'),max_length=100)
-    description_en = models.TextField(_('description in English language'), max_length=1000, blank=True)
-    description_lt = models.TextField(_('description in English language'), max_length=1000, blank=True)
+    description_en = models.TextField(
+        _('description in English language'), 
+        max_length=1000, 
+        blank=True
+    )
+    description_lt = models.TextField(
+        _('description in English language'), 
+        max_length=1000, 
+        blank=True
+    )
+    image = models.ImageField(
+        _("add image"),
+        upload_to='photos/',
+        null=True, 
+        blank=True
+    )
     
     class Meta:
         verbose_name = _("type")
         verbose_name_plural = _("types")
+    
+    def save(self, *args, **kwargs) -> None:
+        super().save(*args, **kwargs)
+        if self.image:
+            image = Image.open(self.image.path)
+            if image.height > 300 or image.width > 500:
+                resized_dimensions = (500, 300)
+                image.thumbnail(resized_dimensions)
+                image.save(self.image.path)
 
     def __str__(self):
         return self.name_en
@@ -29,34 +52,40 @@ class Type(models.Model):
 class PlantTime(models.Model):
     month_en = models.IntegerField(
         choices=[
-            (1, 'January'), (2, 'February'), (3, 'March'), (4, 'April'), (5, 'May'),
-            (6, 'June'), (7, 'July'), (8, 'August'), (9, 'September'), (10, 'October'),
-            (11, 'November'), (12, 'December'),
+            (1, 'January'), (2, 'February'), (3, 'March'), (4, 'April'),
+            (5, 'May'), (6, 'June'), (7, 'July'), (8, 'August'),
+            (9, 'September'), (10, 'October'), (11, 'November'), 
+            (12, 'December'),
         ]
     )
     month_lt = models.IntegerField(
         choices=[
-            (1, 'Sausis'), (2, 'Vasaris'), (3, 'Kovas'), (4, 'Balandis'), (5, 'Gegužė'),
-            (6, 'Birželis'), (7, 'Liepa'), (8, 'Rugpjūtis'), (9, 'Rugsėjis'), (10, 'Spalis'),
-            (11, 'Lapkritis'), (12, 'Gruodis'),
+            (1, 'Sausis'), (2, 'Vasaris'), (3, 'Kovas'), (4, 'Balandis'),
+            (5, 'Gegužė'), (6, 'Birželis'), (7, 'Liepa'), (8, 'Rugpjūtis'),
+            (9, 'Rugsėjis'), (10, 'Spalis'), (11, 'Lapkritis'),
+            (12, 'Gruodis'),
         ]
     )
     first_day = models.IntegerField(
         choices=[
-            (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'), (7, '7'),
-            (8, '8'), (9, '9'), (10, '10'), (11, '11'), (12, '12'), (13, '13'),
-            (14, '14'), (15, '15'), (16, '16'), (17, '17'), (18, '18'), (19, '19'),
-            (20, '20'), (21, '21'), (22, '22'), (23, '23'), (24, '24'), (25, '25'),
-            (26, '26'), (27, '27'), (28, '28'), (29, '29'), (30, '30'), (31, '31'),
-        ])
+            (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'),
+            (7, '7'), (8, '8'), (9, '9'), (10, '10'), (11, '11'), (12, '12'),
+            (13, '13'), (14, '14'), (15, '15'), (16, '16'), (17, '17'),
+            (18, '18'), (19, '19'), (20, '20'), (21, '21'), (22, '22'), 
+            (23, '23'), (24, '24'), (25, '25'), (26, '26'), (27, '27'), 
+            (28, '28'), (29, '29'), (30, '30'), (31, '31'),
+        ]
+    )
     last_day = models.IntegerField(
         choices=[
-            (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'), (7, '7'),
-            (8, '8'), (9, '9'), (10, '10'), (11, '11'), (12, '12'), (13, '13'),
-            (14, '14'), (15, '15'), (16, '16'), (17, '17'), (18, '18'), (19, '19'),
-            (20, '20'), (21, '21'), (22, '22'), (23, '23'), (24, '24'), (25, '25'),
-            (26, '26'), (27, '27'), (28, '28'), (29, '29'), (30, '30'), (31, '31'),
-        ])
+            (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'), 
+            (7, '7'), (8, '8'), (9, '9'), (10, '10'), (11, '11'), (12, '12'),
+            (13, '13'), (14, '14'), (15, '15'), (16, '16'), (17, '17'),
+            (18, '18'), (19, '19'), (20, '20'), (21, '21'), (22, '22'), 
+            (23, '23'), (24, '24'), (25, '25'), (26, '26'), (27, '27'), 
+            (28, '28'), (29, '29'), (30, '30'), (31, '31'),
+        ]
+    )
     
     class Meta:
         verbose_name = _("plantTime")
@@ -72,8 +101,16 @@ class PlantTime(models.Model):
 class Color(models.Model):
     name_en = models.CharField(_("name in English language"),max_length=100)
     name_lt = models.CharField(_("name in Lithuanian language"),max_length=100)
-    description_en = models.TextField(_("description in English language"), max_length=1000, blank=True)
-    description_lt = models.TextField(_("description in Lithuanian language"), max_length=1000, blank=True)
+    description_en = models.TextField(
+        _("description in English language"), 
+        max_length=1000, 
+        blank=True
+    )
+    description_lt = models.TextField(
+        _("description in Lithuanian language"), 
+        max_length=1000, 
+        blank=True
+    )
     
     class Meta:
         verbose_name = _("color")
@@ -96,12 +133,13 @@ class Plant(models.Model):
         Type,
         verbose_name=_("type"),
         on_delete=models.CASCADE, 
-        related_name=_("plants"),)
+        related_name=_("plants"),
+    )
     colors = models.ManyToManyField(
         Color,
         verbose_name=_("color"), 
         related_name=_("plants"),
-        )
+    )
     planting_time = models.ForeignKey(
         PlantTime, 
         verbose_name=_("planting time"),
@@ -118,8 +156,6 @@ class Plant(models.Model):
     def get_absolute_url(self):
         return reverse("plant_detail", kwargs={"pk": self.pk})
     
-#zemiau modelio dalis kuria manipuliuoja vartotojas virsuje
-# modelio dalis kiri tvarkoma administratoriaus.
 
 class Project(models.Model):
     user = models.ForeignKey(
@@ -130,7 +166,12 @@ class Project(models.Model):
     )
     project_name = models.CharField(_("project name"), max_length=100)
     public = models.BooleanField(_("public"), default=False)
-    description = HTMLField(_("enter description"), max_length=10000, default='', blank=True)
+    description = HTMLField(
+        _("enter description"), 
+        max_length=10000, 
+        default='', 
+        blank=True
+    )
 
     class Meta:
         verbose_name = _("project")
@@ -144,8 +185,10 @@ class Project(models.Model):
     
 
 class Zone(models.Model):
-    name = models.CharField(_("name in Lithuanian language"), 
-        max_length=50, blank=True
+    name = models.CharField(
+        _("name in Lithuanian language"), 
+        max_length=50, 
+        blank=True
     )
     lenght = models.FloatField(_("enter lenght"))
     width = models.FloatField(_("enter width"))
@@ -156,7 +199,12 @@ class Zone(models.Model):
         on_delete=models.CASCADE,
         related_name=_("zones"),
     )
-    description = HTMLField(_("enter description"), max_length=10000, default='', blank=True)   
+    description = HTMLField(
+        _("enter description"), 
+        max_length=10000, 
+        default='', 
+        blank=True
+    )   
     
     class Meta:
         verbose_name = _("zone")
@@ -170,12 +218,13 @@ class Zone(models.Model):
 
 
 class ZonePlant(models.Model):
-    blooming_period = models.CharField(_("enter blooming period"),
+    blooming_period = models.CharField(
+        _("enter blooming period"),
         max_length=100, 
         blank=True
     )
     qty = models.IntegerField(_('enter quantity'))
-    price = models.FloatField(_('enter plants price of unit'),)
+    price = models.FloatField(_('enter plants price of unit'))
     zone = models.ForeignKey(
         Zone,
         verbose_name=_("zone"),

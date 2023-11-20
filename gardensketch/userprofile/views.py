@@ -56,8 +56,12 @@ def signup(request: HttpRequest):
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
         _user_exists = _('Username is already taken, or is too short.')
-        _email_validation = _('Email must be valid and not belonging to an existing user.')
-        _password_validation = _('Password is too short, or entered passwords do not match.')
+        _email_validation = _(
+            'Email must be valid and not belonging to an existing user.'
+        )
+        _password_validation = _(
+            'Password is too short, or entered passwords do not match.'
+        )
         if not len(username) > 4 or User.objects.filter(username=username).exists():
             errors.append(_user_exists)
         if not len(email) > 0 or User.objects.filter(email=email).exists():
@@ -68,7 +72,10 @@ def signup(request: HttpRequest):
             for error in errors:
                 messages.error(request, error)
         else:
-            User.objects.create_user(username=username, email=email, password=password1)
+            User.objects.create_user(
+                username=username, 
+                email=email, password=password1
+            )
             _signup_successful = _('Sign up successful. You can log in now.')
             messages.success(request, _signup_successful)
             return redirect('login')
