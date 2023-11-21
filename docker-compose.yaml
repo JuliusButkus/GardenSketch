@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  dev:
+    build: .
+    image: gardenplaner.dev
+    container_name: gardenplaner.dev
+    tty: true
+    stdin_open: true
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./gardensketch:/app
+    command: >
+      bash -c "python manage.py migrate &&
+      python manage.py collectstatic --noinput &&
+      gunicorn gardensketch.wsgi --bind 0.0.0.0:8000"
+  nginx:
+    build: ./nginx/
+    image: nginx:gardensketch
+    container_name: gardensketch.nginx
+    restart: always
+    ports: 
+      - 80:80
+    links:
+      - dev:gardenplaner
+    volumes:
+      - ./gardensketch/static:/app/static
+      - ./gardensketch/media:/app/media
+    
