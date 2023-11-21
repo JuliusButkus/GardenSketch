@@ -2,10 +2,10 @@
 {% load static i18n %}
 {% block title %} {{ block.super }}{% endblock title %}
 {% block content %}
-  <h2>Zone Details</h2>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Name : {{ zone.name }}</h5>
+<div class="container">
+  <div class="content">
+    <div class="main-content">
+      <h2>{{ zone.name }}</h2>
       <p class="card-text">Length: {{ zone.lenght }}</p>
       <p class="card-text">Width: {{ zone.width }}</p>
       <p class="card-text">Garden Project: {{ zone.project.project_name }}</p>
@@ -14,46 +14,59 @@
           <h2>Description</h2>
           {{ zone.description|safe }}
       {% endif %}
+      <a href="{% url 'update_zone' pk=zone.id %}">Update Zone</a>
+      <h3 class="separator"></h3>
+      <h2>Select Plant</h2>
+      <form method="GET" action="{% url 'add_plant' zone_id=zone.pk %}">
+        {{ plants_dropdown_form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Plant</button>
+      </form>
+      <table class="plant-table center">
+        <tr>
+            <th>{% trans "name"|capfirst %}</th>
+            <th>{% trans "color"|capfirst %}</th>
+            <th>{% trans "blooming period"|capfirst %}</th>
+            <th>{% trans "unit price"|capfirst %}</th>
+            <th>{% trans "qty"|capfirst %}</th>
+            <th>{% trans "actions"|capfirst %}</th>
+        </tr>
+        {% for zone_plant in zone.zone_plants.all %}
+            <tr class="data-meniu center" >
+                <td>{{ zone_plant.plant.name_en }}</td>
+                <td>{{ zone_plant.color.name_en }}</td>
+                <td>{{ zone_plant.blooming_period }}</td>
+                <td>{{ zone_plant.price }}</td>
+                <td>{{ zone_plant.qty }}</td>
+                <td>
+                    <form method="post" action="{% url 'delete_zone_plant' zone_id=zone.id pk=zone_plant.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Remove plant</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h3 class="separator"></h3>
+    <h3>Photos</h3>
+    <button><a href="{% url 'add_photo' zone_id=zone.pk %}">ADD Photo</a></button>
+    <div class="card-list">
+    {% for photo in zone.photos.all %}
+      <div class="card">
+          {% if photo.image %}
+              <img src="{{ photo.image.url }}" alt="Photo">
+          {% else %}
+              <p>No image available</p>
+          {% endif %}
+          <p>season: {{ photo.season }}</p>
+          <form method="post" action="{% url 'delete_zone_photo' zone_id=zone.id pk=photo.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Remove photo</button>
+        </form>
+      </div>
+    {% endfor %}
+    </div>
+    <a href="{% url 'project_detail' pk=zone.project.id %}" class="btn btn-primary">Back to Garden Project</a>
     </div>
   </div>
-  <a href="{% url 'update_zone' pk=zone.id %}">Update Zone</a>
-  <form method="GET" action="{% url 'add_plant' zone_id=zone.pk %}">
-    {{ plants_dropdown_form.as_p }}
-    <button type="submit" class="btn btn-primary">Add Plant</button>
-  </form>
-
-  <h3>Selected Plants</h3>
-  {% for zone_plant in zone.zone_plants.all %}
-    <li>Plant: {{ zone_plant.plant.name_en }}
-       - Color: {{ zone_plant.color.name_en }}
-       - Blooming Period: {{ zone_plant.blooming_period }}
-       - Quantity: {{ zone.zone_plant.qty }}
-       - Price: {{ zone_plant.price }}
-    <form method="post" action="{% url 'delete_zone_plant' zone_id=zone.id pk=zone_plant.id %}" style="display: inline;">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger btn-sm">Remove plant</button>
-    </form>
-    </li>
-  {% endfor %}
-
-  <h3>Photos</h3>
-  <button><a href="{% url 'add_photo' zone_id=zone.pk %}">ADD Photo /Remove photos</a></button>
-  {% for photo in zone.photos.all %}
-    <div>
-        {% if photo.image %}
-            <img src="{{ photo.image.url }}" alt="Photo"><form method="post" action="{% url 'delete_zone_photo' zone_id=zone.id pk=photo.id %}" style="display: inline;">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-danger btn-sm">Remove plant</button>
-          </form>
-        {% else %}
-            <p>No image available</p>
-        {% endif %}
-        <p>season: {{ photo.season }}</p>
-        <form method="post" action="{% url 'delete_zone_photo' zone_id=zone.id pk=photo.id %}" style="display: inline;">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-danger btn-sm">Remove photo</button>
-      </form>
-    </div>
-{% endfor %}
-  <a href="{% url 'project_detail' pk=zone.project.id %}" class="btn btn-primary">Back to Garden Project</a>
+</div>
 {% endblock %}
