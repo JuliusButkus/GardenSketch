@@ -51,7 +51,7 @@
                 <li>
                     <form class="inline-form" action="{% url "set_language" %}" method="POST">
                         {% csrf_token %}
-                        <select name="language" onchange="this.form.submit();">
+                        <select class="language-select" name="language" onchange="this.form.submit();">
                             {% for language in LANGUAGES %}
                                 <option value="{{ language.0 }}"
                                 {% if language.0 == LANGUAGE_CODE %} selected {% endif %}

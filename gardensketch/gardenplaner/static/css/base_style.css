@@ -29,16 +29,13 @@ div.content {
   justify-content: center;
 }
 div.main-content {
-  position: relative;
   background-color: rgb(58, 77, 57, 0.9);
   border-radius: 1rem;
-  padding: 2rem;
-  margin-left: 40rem;
-  margin-right: 40rem;
+  padding: 1rem;
   font-family: 'Jost', sans-serif;
   font-size: medium;
   min-width: 600px;
-  max-width: 2000px;
+  max-width: 1000px;
 }
 div.form-main-content {
   background-color: rgb(58, 77, 57, 0.9);
@@ -57,23 +54,25 @@ div.form-main-content h1 {
 }
 div.card-list {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 2px;
-  max-width: fit-content;
+  padding: 1rem;
+  margin: 0;
 }
 div.card {
-  width: 45%; 
+  width: 44%; 
   margin-bottom: 10px; 
-  border: #04AA6D 2px;
   border-radius: 1rem;
   padding: 1rem;
   background-color: rgb(58, 77, 57, 0.9);
+  margin: 0;
 }
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .card {
       width: 100%; 
   }
-}
+} */
 /* form styles */
 form p label {
   min-width: 10rem;
@@ -92,7 +91,7 @@ a:hover {
 }
 /* image styles */
 img.logo {
-    height: 110px;
+    height: 50px;
     width: auto;
 }
 img.title {
@@ -302,10 +301,11 @@ table.plant-table {
   orientation: landscape;
   orientation: center;
   list-style-type: none;
-  margin-left: 1.5rem;
+  margin-left: 3rem;
 }
 table.plant-table th{
-    padding: 0.8rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     text-align: center;
     font-style: italic;
     font-size: medium;
@@ -313,9 +313,10 @@ table.plant-table th{
 }
 table.plant-table td{
     margin-bottom: 0.5rem;
-    padding: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     text-align: center;
-    color: #333333;
+    color: #d8d8d8 ;
     font-style: italic;
     font-size: medium;
     font-weight: 600;

@@ -72,7 +72,7 @@ class PlantListView(generic.ListView):
     model = models.Plant
     template_name = "gardenplaner/plant_list.html"
     context_object_name = "plant_list"
-    paginate_by = 2
+    paginate_by = 10
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)

@@ -11,7 +11,7 @@
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">{% trans "Yes, Delete" %}</button>
       </form>
-      <a href="{% url 'zone_detail' pk=zone.id %}" class="btn btn-secondary">{% trns "cancel"|capfirst %}</a>
+      <a href="{% url 'zone_detail' pk=zone.id %}" class="btn btn-secondary">{% trans "cancel"|capfirst %}</a>
     </div>
   </div>
 </div>

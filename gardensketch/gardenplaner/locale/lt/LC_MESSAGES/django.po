@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-20 13:09+0000\n"
+"POT-Creation-Date: 2023-11-21 13:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,271 +18,442 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
 "11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
 "1 : n % 1 != 0 ? 2: 3);\n"
+
 #: gardenplaner/forms.py:12 gardenplaner/models.py:167
 msgid "project name"
-msgstr ""
+msgstr "pavadinimas"
 
 #: gardenplaner/forms.py:13 gardenplaner/forms.py:29 gardenplaner/models.py:168
 #: gardenplaner/models.py:195
 msgid "public"
-msgstr ""
+msgstr "viešas"
 
 #: gardenplaner/forms.py:14 gardenplaner/forms.py:30
+#: gardenplaner/templates/gardenplaner/my_projects.html:16
 msgid "description"
-msgstr ""
+msgstr "aprašymas"
 
-#: gardenplaner/forms.py:26
+#: gardenplaner/forms.py:26 gardenplaner/models.py:189
+#: gardenplaner/templates/gardenplaner/plant_list.html:15
+#: gardenplaner/templates/gardenplaner/plant_list.html:20
+#: gardenplaner/templates/gardenplaner/zone_detail.html:22
 msgid "name"
-msgstr ""
+msgstr "pavadiniams"
 
 #: gardenplaner/forms.py:27
 msgid "lenght"
-msgstr ""
+msgstr "ilgis"
 
 #: gardenplaner/forms.py:28
 msgid "width"
-msgstr ""
+msgstr "plotis"
 
 #: gardenplaner/models.py:13 gardenplaner/models.py:102
 msgid "name in English language"
-msgstr ""
+msgstr "pavadinimas Anglų kalba"
 
 #: gardenplaner/models.py:14 gardenplaner/models.py:103
-#: gardenplaner/models.py:189
 msgid "name in Lithuanian language"
-msgstr ""
+msgstr "pavadinimas Lietuvių kalba"
 
 #: gardenplaner/models.py:16 gardenplaner/models.py:21
 #: gardenplaner/models.py:105
 msgid "description in English language"
-msgstr ""
+msgstr "lietuviškas aprašymas"
 
 #: gardenplaner/models.py:26 gardenplaner/models.py:257
 msgid "add image"
-msgstr ""
+msgstr "pridėti paveikslėlį"
 
 #: gardenplaner/models.py:33 gardenplaner/models.py:134
+#: gardenplaner/templates/gardenplaner/plant_list.html:16
+#: gardenplaner/templates/gardenplaner/plant_list.html:21
 msgid "type"
-msgstr ""
+msgstr "tipas"
 
 #: gardenplaner/models.py:34
 msgid "types"
-msgstr ""
+msgstr "tipai"
 
 #: gardenplaner/models.py:91
 msgid "plantTime"
-msgstr ""
+msgstr "Sodinimo laikas"
 
 #: gardenplaner/models.py:92
 msgid "plantTimes"
-msgstr ""
+msgstr "sodinimo laikai"
 
 #: gardenplaner/models.py:110
 msgid "description in Lithuanian language"
-msgstr ""
+msgstr "aprašymas lietuvių kalba"
 
 #: gardenplaner/models.py:116 gardenplaner/models.py:140
 #: gardenplaner/models.py:241
+#: gardenplaner/templates/gardenplaner/zone_detail.html:23
 msgid "color"
-msgstr ""
+msgstr "spalva"
 
 #: gardenplaner/models.py:117
 msgid "colors"
-msgstr ""
+msgstr "spalvos"
 
 #: gardenplaner/models.py:136 gardenplaner/models.py:141
 #: gardenplaner/models.py:147 gardenplaner/models.py:151
 msgid "plants"
-msgstr ""
+msgstr "augalai"
 
 #: gardenplaner/models.py:145
+#: gardenplaner/templates/gardenplaner/plant_list.html:17
+#: gardenplaner/templates/gardenplaner/plant_list.html:22
 msgid "planting time"
-msgstr ""
+msgstr "sodinimo laikas"
 
 #: gardenplaner/models.py:150 gardenplaner/models.py:236
 msgid "plant"
-msgstr ""
+msgstr "augalas"
 
 #: gardenplaner/models.py:163
 msgid "user"
-msgstr ""
+msgstr "vartotojas"
 
 #: gardenplaner/models.py:165 gardenplaner/models.py:178
 msgid "projects"
-msgstr ""
+msgstr "projektai"
 
 #: gardenplaner/models.py:170 gardenplaner/models.py:203
 msgid "enter description"
-msgstr ""
+msgstr "pridėkyte aprašymą"
 
 #: gardenplaner/models.py:177
 msgid "project"
-msgstr ""
+msgstr "projektas"
 
 #: gardenplaner/models.py:193
 msgid "enter lenght"
-msgstr ""
+msgstr "įveskite ilgį"
 
 #: gardenplaner/models.py:194
 msgid "enter width"
-msgstr ""
+msgstr "įveskite plotį"
 
 #: gardenplaner/models.py:198
 msgid "garden project"
-msgstr ""
+msgstr "kiemo projektas"
 
 #: gardenplaner/models.py:200 gardenplaner/models.py:211
 msgid "zones"
-msgstr ""
+msgstr "zonos"
 
 #: gardenplaner/models.py:210 gardenplaner/models.py:230
 #: gardenplaner/models.py:270
 msgid "zone"
-msgstr ""
+msgstr "zona"
 
 #: gardenplaner/models.py:222
 msgid "enter blooming period"
-msgstr ""
+msgstr "įveskite žydėjimo periodą"
 
 #: gardenplaner/models.py:226
 msgid "enter quantity"
-msgstr ""
+msgstr "įveskite kiekį"
 
 #: gardenplaner/models.py:227
 msgid "enter plants price of unit"
-msgstr ""
+msgstr "vieneto kaina"
 
 #: gardenplaner/models.py:232 gardenplaner/models.py:238
 #: gardenplaner/models.py:243
 msgid "zone_plants"
-msgstr ""
+msgstr "zonos augalai"
 
 #: gardenplaner/models.py:246
 msgid "zone plant"
-msgstr ""
+msgstr "zonos augalas"
 
 #: gardenplaner/models.py:247
 msgid "zone plants"
-msgstr ""
+msgstr "zonos augalai"
 
 #: gardenplaner/models.py:261
 msgid "select season"
-msgstr ""
+msgstr "pasirikti sezoną"
 
 #: gardenplaner/models.py:272 gardenplaner/models.py:277
 msgid "photos"
-msgstr ""
+msgstr "nuotraukos"
 
 #: gardenplaner/models.py:276
 msgid "photo"
-msgstr ""
+msgstr "nuotrauka"
 
 #: gardenplaner/templates/base.html:34
+#: gardenplaner/templates/gardenplaner/my_projects.html:8
 msgid "my projects"
-msgstr ""
+msgstr "mano projektai"
 
 #: gardenplaner/templates/base.html:43
 msgid "admin"
-msgstr ""
+msgstr "administratorius"
 
 #: gardenplaner/templates/base.html:45
 msgid "logout"
-msgstr ""
+msgstr "atsijungti"
 
 #: gardenplaner/templates/base.html:47
 msgid "Welcome"
-msgstr ""
+msgstr "Sveiki"
 
 #: gardenplaner/templates/base.html:48
 msgid "Login"
-msgstr ""
+msgstr "Prisijungti"
 
 #: gardenplaner/templates/base.html:49
 msgid "Sign Up"
-msgstr ""
+msgstr "Prisiregistruoti"
+
+#: gardenplaner/templates/gardenplaner/add_photo.html:8
+msgid "Add Photo to"
+msgstr "Pridėti nuotrauką"
+
+#: gardenplaner/templates/gardenplaner/add_photo.html:12
+msgid "Add Photo"
+msgstr "Pridėti nuotrauką"
+
+#: gardenplaner/templates/gardenplaner/add_photo.html:14
+#: gardenplaner/templates/gardenplaner/add_plant.html:14
+msgid "Back to Zone"
+msgstr "Gryžti į zoną"
+
+#: gardenplaner/templates/gardenplaner/add_plant.html:8
+#: gardenplaner/templates/gardenplaner/add_plant.html:12
+#: gardenplaner/templates/gardenplaner/zone_detail.html:18
+msgid "Add Plant"
+msgstr "Pridėti augalą"
+
+#: gardenplaner/templates/gardenplaner/create_project.html:8
+msgid "Create a new Project"
+msgstr "Sukurti naują projektą"
+
+#: gardenplaner/templates/gardenplaner/create_project.html:12
+#: gardenplaner/templates/gardenplaner/create_zone.html:12
+msgid "Create"
+msgstr "sukruti"
+
+#: gardenplaner/templates/gardenplaner/create_zone.html:8
+msgid "Create zone for"
+msgstr "Sukurkite zoną"
+
+#: gardenplaner/templates/gardenplaner/create_zone.html:14
+msgid "Cancel"
+msgstr "Atšaukti"
+
+#: gardenplaner/templates/gardenplaner/delete_project.html:8
+#: gardenplaner/templates/gardenplaner/delete_zone.html:8
+msgid "Confirm Deletion"
+msgstr "patvirtinti"
+
+#: gardenplaner/templates/gardenplaner/delete_project.html:9
+msgid "Are you sure you want to delete the project"
+msgstr "Ar jūs tikrai norite ištrinti šį projektą"
+
+#: gardenplaner/templates/gardenplaner/delete_project.html:12
+#: gardenplaner/templates/gardenplaner/delete_zone.html:12
+msgid "Yes, Delete"
+msgstr "Taip, Ištrinti"
+
+#: gardenplaner/templates/gardenplaner/delete_project.html:14
+#: gardenplaner/templates/gardenplaner/delete_zone.html:14
+msgid "cancel"
+msgstr "atšaukti"
+
+#: gardenplaner/templates/gardenplaner/delete_zone.html:9
+msgid "Are you sure you want to delete the zone"
+msgstr "Ar tikrai norite ištrintį zoną"
 
 #: gardenplaner/templates/gardenplaner/gallary.html:3
 #: gardenplaner/templates/gardenplaner/plant_types.html:3
 msgid "Plant types"
-msgstr ""
+msgstr "Augalų rūšys"
 
 #: gardenplaner/templates/gardenplaner/gallary.html:8
 msgid "gallery"
-msgstr ""
+msgstr "galerija"
 
 #: gardenplaner/templates/gardenplaner/gallary.html:14
-#: gardenplaner/templates/gardenplaner/project_detail.html:9
+#: gardenplaner/templates/gardenplaner/project_detail.html:21
 msgid "created by:"
-msgstr ""
+msgstr "sukurta:"
+
+#: gardenplaner/templates/gardenplaner/gallary.html:16
+msgid "season"
+msgstr "pasirikti sezoną"
+
+#: gardenplaner/templates/gardenplaner/inc/pager.html:4
+msgid "First"
+msgstr "Primas"
+
+#: gardenplaner/templates/gardenplaner/inc/pager.html:6
+msgid "Previous"
+msgstr "Ankstesnis"
+
+#: gardenplaner/templates/gardenplaner/inc/pager.html:12
+msgid "Next"
+msgstr "Kitas"
+
+#: gardenplaner/templates/gardenplaner/inc/pager.html:14
+msgid "Last"
+msgstr "paskutinis"
+
+#: gardenplaner/templates/gardenplaner/inc/pager.html:18
+msgid "search plant"
+msgstr "ieškoti augalao"
+
+#: gardenplaner/templates/gardenplaner/inc/pager.html:20
+msgid "reset"
+msgstr "išvalyti"
 
 #: gardenplaner/templates/gardenplaner/index.html:9
 msgid "Bringing Your Garden Dreams to Life!"
-msgstr ""
+msgstr "Įgyvendinkit savo sodo svajones!"
+
+#: gardenplaner/templates/gardenplaner/my_projects.html:9
+msgid "create new project"
+msgstr "sukurti naują projektą"
+
+#: gardenplaner/templates/gardenplaner/my_projects.html:14
+msgid "Created by"
+msgstr "Sukurta:"
+
+#: gardenplaner/templates/gardenplaner/my_projects.html:18
+msgid "View Details"
+msgstr "Išsamiau"
 
 #: gardenplaner/templates/gardenplaner/plant_list.html:3
 msgid "plants list"
-msgstr ""
+msgstr "augalų sąrašas"
 
-#: gardenplaner/templates/gardenplaner/plant_list.html:11
-msgid "First"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/plant_list.html:13
-msgid "Previous"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/plant_list.html:19
-msgid "Next"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/plant_list.html:21
-msgid "Last"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/plant_list.html:25
-msgid "search beer"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/plant_list.html:27
-msgid "reset"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/plant_list.html:38
-msgid "Price"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/plant_list.html:39
-msgid "Available Liters"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/plant_list.html:40
-msgid "Beer Type"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/plant_list.html:46
+#: gardenplaner/templates/gardenplaner/plant_list.html:29
 msgid "No plant available"
-msgstr ""
+msgstr "augalai neprieinami"
 
-#: gardenplaner/templates/gardenplaner/plant_types.html:5
+#: gardenplaner/templates/gardenplaner/plant_types.html:8
 msgid "plant types"
-msgstr ""
+msgstr "augalo rūšys"
 
-#: gardenplaner/templates/gardenplaner/plant_types.html:12
+#: gardenplaner/templates/gardenplaner/plant_types.html:15
 msgid "no plant types found"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/project_detail.html:11
-msgid "public:"
-msgstr ""
-
-#: gardenplaner/templates/gardenplaner/project_detail.html:12
-msgid "yes"
-msgstr ""
+msgstr "nerastos augalo rūšys"
 
 #: gardenplaner/templates/gardenplaner/project_detail.html:13
-msgid "no"
-msgstr ""
+msgid "Update project"
+msgstr "Atnaujinti projektą"
 
-#: gardenplaner/templates/gardenplaner/project_detail.html:15
+#: gardenplaner/templates/gardenplaner/project_detail.html:16
+
+msgid "Delete project"
+msgstr "Ištrinti projektą"
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:23
+msgid "public:"
+msgstr "viešas"
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:24
+msgid "yes"
+msgstr "taip"
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:25
+msgid "no"
+msgstr "ne"
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:27
 msgid "description:"
-msgstr ""
+msgstr "aprašymas"
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:30
+msgid "Create Zone"
+msgstr "Sukurti zoną"
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:31
+#: gardenplaner/templates/gardenplaner/project_detail.html:48
+msgid "Back to My Projects"
+msgstr "Gryžti į mano projektus"
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:38
+#: gardenplaner/templates/gardenplaner/zone_detail.html:9
+msgid "Length"
+msgstr "Ilgis"
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:39
+#: gardenplaner/templates/gardenplaner/zone_detail.html:10
+msgid "Width"
+msgstr "Plotis"
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:40
+msgid "Delete Zone"
+msgstr "ištrinti Zoną"
+
+#: gardenplaner/templates/gardenplaner/project_detail.html:45
+msgid "No Zones created yet"
+msgstr "Dar nėra sukurtų zonų"
+
+#: gardenplaner/templates/gardenplaner/update_project.html:8
+msgid "Update Project"
+msgstr "Atnaujinti projektą"
+
+#: gardenplaner/templates/gardenplaner/update_project.html:12
+#: gardenplaner/templates/gardenplaner/update_zone.html:12
+msgid "Save changes"
+msgstr "išsaugoti atnaujinimus"
+
+#: gardenplaner/templates/gardenplaner/update_zone.html:8
+#: gardenplaner/templates/gardenplaner/zone_detail.html:13
+msgid "Update Zone"
+msgstr "Atnaujintį zoną"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:11
+msgid "Project"
+msgstr "Projektas"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:12
+msgid "Description"
+msgstr "Aprašymas"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:15
+msgid "Select Plant"
+msgstr "Pasirikti augalą"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:24
+msgid "blooming period"
+msgstr "žydėjimo periodas"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:25
+msgid "unit price"
+msgstr "vieneto kaina"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:26
+msgid "qty"
+msgstr "kiekis"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:27
+msgid "actions"
+msgstr "veiksmai"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:44
+msgid "Remove plant"
+msgstr "pašalinti augalą"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:51
+msgid "ADD Photo"
+msgstr "Pridėti nuotrauką"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:58
+msgid "No image available"
+msgstr "Nėra nuotraukų"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:63
+msgid "Remove photo"
+msgstr "pašalinti nuotrauką"
+
+#: gardenplaner/templates/gardenplaner/zone_detail.html:68
+msgid "Back to Project"
+msgstr "Gryžti į projektą"
