@@ -9,7 +9,7 @@
     <form method="post" action="{% url 'update_zone' pk=zone.id %}">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">{% trans "Save changes" %}</button>
+      <button type="submit" class="btn-add-back">{% trans "Save changes" %}</button>
     </form>
     </div>
   </div>

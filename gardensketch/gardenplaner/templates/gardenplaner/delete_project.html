@@ -9,9 +9,9 @@
       <p>{% trans "Are you sure you want to delete the project" %} "{{ project.project_name }}"?</p>
       <form method="post" action="{{ request.path }}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">{% trans "Yes, Delete" %}</button>
+        <button type="submit" class="btn-remove">{% trans "Yes, Delete" %}</button>
       </form>
-      <a href="{% url 'project_detail' pk=project.id %}" class="btn btn-secondary">{% trans "cancel"|capfirst %}</a>
+      <button class="btn-add-back"><a href="{% url 'project_detail' pk=project.id %}">{% trans "cancel"|capfirst %}</a></button>
     </div>
   </div>
 </div>

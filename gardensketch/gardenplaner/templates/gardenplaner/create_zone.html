@@ -9,9 +9,9 @@
       <form method="post"  enctype="multipart/form-data">
         {% csrf_token %}
         {{ zone_form.as_p }}
-        <button type="submit" class="btn btn-primary">{% trans "Create" %}</button>
+        <button type="submit" class="btn-add-back">{% trans "Create" %}</button>
+        <button class="btn-add-back"><a href="{% url 'project_detail' pk=project.id %}">{% trans "Cancel" %}</a></button>
       </form>
-      <a href="{% url 'project_detail' pk=project.id %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
     </div>
   </div>
 </div>

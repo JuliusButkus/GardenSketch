@@ -9,9 +9,9 @@
       <form method="post" action="{% url 'add_photo' zone_id=zone.id %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ photo_form.as_p }}
-        <button type="submit" class="btn btn-primary">{% trans "Add Photo" %}</button>
+        <button type="submit" class="btn-add-back">{% trans "Add Photo" %}</button>
       </form>
-        <a href="{% url 'zone_detail' pk=zone.id %}" class="btn btn-primary">{% trans "Back to Zone"%}</a>
+        <button class="btn-add-back"><a href="{% url 'zone_detail' pk=zone.id %}">{% trans "Back to Zone"%}</a></button>
     </div>
   </div>
 </div>
